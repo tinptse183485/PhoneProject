@@ -1,0 +1,59 @@
+body{
+    background-color: #ffffff;
+}
+header{
+    display: inline;
+    justify-content: center;
+   
+
+}
+
+nav{
+    display: flex;
+    justify-content: center;
+    padding: 1em 0em;
+    background: linear-gradient(
+        to right,
+        #ff512f,
+        #f09819
+        );
+}
+.nav-title{
+    display: flex;
+    color: rgb(45, 45, 45);
+    font-style: italic;
+    font-weight: bold;
+    margin: 0 10em 0 2em;
+}
+.nav-Enter{
+    
+    margin-top: 0.8em;
+}
+.nav-Enter :nth-child(1) {
+    font-weight: bold;
+    border-radius: 10px;
+}
+.nav-Enter :nth-child(2) {
+    font-weight: bold;
+    border-radius: 10px;
+}
+i{
+    height: auto;
+    width: 100%;
+    color:white;
+}
+#carousel{
+    
+    background-color: rgba(203, 203, 203, 0.818);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1em 10em 0em 10em ;
+    
+}
+.carousel-inner{
+    border-radius: 1em;
+    justify-content: center;
+    width: 25%;
+    height: auto;
+}
