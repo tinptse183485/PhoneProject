@@ -1,10 +1,11 @@
+
 body{
-    background-color: #ffffff;
+    
 }
 header{
     display: inline;
     justify-content: center;
-   
+
 
 }
 
@@ -26,7 +27,7 @@ nav{
     margin: 0 10em 0 2em;
 }
 .nav-Enter{
-    
+
     margin-top: 0.8em;
 }
 .nav-Enter :nth-child(1) {
@@ -43,13 +44,13 @@ i{
     color:white;
 }
 #carousel{
-    
+
     background-color: rgba(203, 203, 203, 0.818);
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 1em 10em 0em 10em ;
-    
+
 }
 .carousel-inner{
     border-radius: 1em;
@@ -57,3 +58,18 @@ i{
     width: 25%;
     height: auto;
 }
+.old-price{ 
+    
+    font-size:0.8em;  
+    text-decoration: line-through;  
+    color:grey;
+}
+.new-price{  
+    color:black; 
+    font-size:1em; 
+    line-height: 1.1; 
+}
+
+
+
+
