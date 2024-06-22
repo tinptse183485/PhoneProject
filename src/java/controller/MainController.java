@@ -41,7 +41,7 @@ public class MainController extends HttpServlet {
     private static final String ADD = "Add More";
     private static final String ADD_NEW_ITEMS = "Add New Items";
     private static final String ADD_ITEM = "AddController";
-    private static final String ADD_CART = "ADD";
+    private static final String ADD_CART = "Add to cart";
     private static final String ADD_TO_CART_CONTROLLER = "AddToCartServlet";
     private static final String VIEW = "View";
     private static final String VIEW_CART = "ViewCart.jsp";
@@ -57,6 +57,11 @@ public class MainController extends HttpServlet {
     private static final String BACK_MENU_CONTROLLER = "admin.jsp";
     private static final String CONTINUE_SHOPPING = "Continue shopping";
     private static final String CONTINUE_SHOPPING_CONTROLLER = "user.jsp";
+    private static final String SAMSUNG = "SAMSUNG";
+    private static final String APPLE = "APPLE";
+    private static final String LENOVO = "LENOVO";
+    private static final String OPPO = "OPPO";
+    private static final String CATEGORY_CONTROLLER = "CategoryController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -65,6 +70,7 @@ public class MainController extends HttpServlet {
         try {
             String action = request.getParameter("action");
             String user = request.getParameter("actionUser");
+            String brand = request.getParameter("brand");
             if (LOGIN.equals(action)) {
                 url = LOGIN_CONTROLLER;
 
@@ -105,7 +111,10 @@ public class MainController extends HttpServlet {
                 url = BACK_MENU_CONTROLLER;
             }else if (CONTINUE_SHOPPING.equals(action)) {
                 url = CONTINUE_SHOPPING_CONTROLLER;
+            }else if (APPLE.equals(brand) ||SAMSUNG.equals(brand) ||OPPO.equals(brand) ||LENOVO.equals(brand) ) {
+                url = CATEGORY_CONTROLLER;
             } else {
+               
                 request.setAttribute("ERROR", "Your action not support");
             }
         } catch (Exception e) {

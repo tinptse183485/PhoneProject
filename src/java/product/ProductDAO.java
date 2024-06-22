@@ -37,7 +37,7 @@ public class ProductDAO {
                     int sale = rs.getInt("sale");
                     String mobileBrand = rs.getString("mobileBrand");
                     String description = rs.getString("description");
-                    list.add(new ProductDTO(mobileId, description, price, mobileName, mobileBrand, quantity, sale,image));
+                    list.add(new ProductDTO(mobileId, description, price, mobileName, mobileBrand, quantity, sale, image));
                 }
 
             }
@@ -75,7 +75,7 @@ public class ProductDAO {
             ps.setString(5, product.getDescription());
             ps.setString(6, product.getMobileBrand());
             ps.setString(7, product.getImage());
-            
+
             int affectedRows = ps.executeUpdate();
 
             if (affectedRows > 0) {
@@ -217,5 +217,93 @@ public class ProductDAO {
 
     }
 
-   
+    public List<ProductDTO> searchbyBrand(String mobileBrand) throws Exception {
+        List<ProductDTO> list = new ArrayList<>();
+        String sql = "SELECT mobileId,mobileBrand, description, mobileName, price, quantity,sale,image FROM tblMobile WHERE mobileBrand = ?";
+
+        try (Connection conn = DBUtils.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, mobileBrand);
+            try (ResultSet rs = ps.executeQuery()) {
+
+                while (rs.next()) {
+                    String mobileId = rs.getString("mobileId");
+                    String mobileName = rs.getString("mobileName");
+                    String imgae = rs.getString("image");
+                    double price = rs.getDouble("price");
+                    int quantity = rs.getInt("quantity");
+                    double sale = rs.getDouble("sale");
+                    String description = rs.getString("description");
+                    list.add(new ProductDTO(mobileId, description, price, mobileName, mobileBrand, quantity, sale, imgae));
+                }
+            }
+        }
+        return list;
+
+    }
+    public boolean isContain(String mobileId,List<ProductDTO> list){
+        for (ProductDTO i:list)
+            if (i.getMobileId().equals(mobileId))
+                return true;
+        return false;
+    }
+
+    public List<ProductDTO> searchFullOptions(float min, float max) throws Exception {
+        List<ProductDTO> list = new ArrayList<>();
+        List<ProductDTO> all = getAllProducts();
+
+        String sql = "SELECT mobileId,mobileBrand, description, mobileName, price, quantity,sale,image FROM tblMobile WHERE price between ? AND ?";
+
+        try (Connection conn = DBUtils.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setFloat(1, min);
+            ps.setFloat(2, max);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    String mobileId = rs.getString("mobileId");
+                    String mobileName = rs.getString("mobileName");
+                    String imgae = rs.getString("image");
+                    double price = rs.getDouble("price");
+                    int quantity = rs.getInt("quantity");
+                    double sale = rs.getDouble("sale");
+                    String mobileBrand = rs.getString("mobileBrand");
+                    String description = rs.getString("description");
+                    list.add(new ProductDTO(mobileId, description, price, mobileName, mobileBrand, quantity, sale, imgae));
+                }
+                for (ProductDTO i : all) {
+                    if (i.newPrice() >= min && i.newPrice() <= max && !isContain(i.getMobileId(), list)) {
+                        list.add(i);
+                    }
+
+                }
+            }
+        }
+
+        System.out.println(list);
+        return list;
+
+    }
+
+    public ProductDTO getProduct(String mobileName) throws Exception {
+        ProductDTO product = new ProductDTO();
+        String sql = "SELECT mobileId,mobileBrand, description, mobileName, price, quantity,sale,image FROM tblMobile WHERE mobileName=?";
+
+        try (Connection conn = DBUtils.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, mobileName);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    String mobileId = rs.getString("mobileId");
+
+                    String imgae = rs.getString("image");
+                    double price = rs.getDouble("price");
+                    int quantity = rs.getInt("quantity");
+                    double sale = rs.getDouble("sale");
+                    String mobileBrand = rs.getString("mobileBrand");
+                    String description = rs.getString("description");
+                    product = new ProductDTO(mobileId, description, price, mobileName, mobileBrand, quantity, sale, imgae);
+                }
+            }
+        }
+
+        return product;
+    }
+
 }

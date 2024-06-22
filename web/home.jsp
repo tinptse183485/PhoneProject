@@ -1,7 +1,14 @@
+<%-- 
+    Document   : home
+    Created on : Jun 19, 2024, 8:50:57 AM
+    Author     : ASUS
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Ministore</title>
+    <title>TinStore</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,11 +18,13 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+   
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-    <!-- script
+    <link href="styleHome.css" rel="stylesheet" type="text/css"/>
+   <!-- script
     ================================================== -->
     <script src="js/modernizr.js"></script>
   </head>
@@ -93,35 +102,23 @@
     <div class="search-popup">
         <div class="search-popup-container">
 
-          <form role="search" method="get" class="search-form" action="">
-            <input type="search" id="search-form" class="search-field" placeholder="Type and press enter" value="" name="s" />
-            <button type="submit" class="search-submit"><svg class="search"><use xlink:href="#search"></use></svg></button>
-          </form>
 
           <h5 class="cat-list-title">Browse Categories</h5>
           
           <ul class="cat-list">
             <li class="cat-list-item">
-              <a href="#" title="Mobile Phones">Mobile Phones</a>
+              <a href="login.jsp" title="APPLE">APPLE</a>
             </li>
             <li class="cat-list-item">
-              <a href="#" title="Smart Watches">Smart Watches</a>
+              <a href="login.jsp" title="LENOVO">LENOVO</a>
             </li>
             <li class="cat-list-item">
-              <a href="#" title="Headphones">Headphones</a>
+              <a href="login.jsp" title="SAMSUNG">SAMSUNG</a>
             </li>
             <li class="cat-list-item">
-              <a href="#" title="Accessories">Accessories</a>
+              <a href="login.jsp" title="OPPO">OPPO</a>
             </li>
-            <li class="cat-list-item">
-              <a href="#" title="Monitors">Monitors</a>
-            </li>
-            <li class="cat-list-item">
-              <a href="#" title="Speakers">Speakers</a>
-            </li>
-            <li class="cat-list-item">
-              <a href="#" title="Memory Cards">Memory Cards</a>
-            </li>
+            
           </ul>
 
         </div>
@@ -141,7 +138,7 @@
           <div class="offcanvas offcanvas-end" tabindex="-1" id="bdNavbar" aria-labelledby="bdNavbarOffcanvasLabel">
             <div class="offcanvas-header px-4 pb-0">
               <a class="navbar-brand" href="home.html">
-                <img src="images/main-logo.png" class="logo">
+                <img src="image/main-logo.png" class="logo">
               </a>
               <button type="button" class="btn-close btn-close-black" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#bdNavbar"></button>
             </div>
@@ -160,7 +157,7 @@
                   <a class="nav-link me-4" href="#testimonials">Review</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link me-4" href="#latest-blog">Shop</a>
+                  <a class="nav-link me-4" href="login.jsp">Shop</a>
                 </li>
                 
                 <li class="nav-item">
@@ -174,7 +171,7 @@
                         </a>
                       </li>
                       <li class="pe-3">
-                        <a href="#">
+                        <a href="login.jsp">
                           <svg class="user">
                             <use xlink:href="#user"></use>
                           </svg>
@@ -205,12 +202,12 @@
                 <div class="col-md-6">
                   <div class="banner-content">
                     <h1 class="display-2 text-uppercase text-dark pb-5">Your Products Are Great.</h1>
-                    <a href="shop.html" class="btn btn-medium btn-dark text-uppercase btn-rounded-none">Shop Product</a>
+                    <a href="login.jsp" class="btn btn-medium btn-dark text-uppercase btn-rounded-none">Shop Product</a>
                   </div>
                 </div>
                 <div class="col-md-5">
                   <div class="image-holder">
-                    <img src="images/banner-image.png" alt="banner">
+                    <img src="image/banner-image.png" alt="banner">
                   </div>
                 </div>
               </div>
@@ -222,12 +219,12 @@
                 <div class="col-md-6">
                   <div class="banner-content">
                     <h1 class="display-2 text-uppercase text-dark pb-5">Technology Hack You Won't Get</h1>
-                    <a href="shop.html" class="btn btn-medium btn-dark text-uppercase btn-rounded-none">Shop Product</a>
+                    <a href="login.jsp" class="btn btn-medium btn-dark text-uppercase btn-rounded-none">Shop Product</a>
                   </div>
                 </div>
                 <div class="col-md-5">
                   <div class="image-holder">
-                    <img src="images/banner-image.png" alt="banner">
+                    <img src="image/banner-image.png" alt="banner">
                   </div>
                 </div>
               </div>
@@ -318,16 +315,16 @@
               <div class="swiper-slide">
                 <div class="product-card position-relative">
                   <div class="image-holder">
-                    <img src="images/product-item1.jpg" alt="product-item" class="img-fluid">
+                    <img src="image/product-item1.jpg" alt="product-item" class="img-fluid">
                   </div>
                   <div class="cart-concern position-absolute">
                     <div class="cart-button d-flex">
-                      <a href="#" class="btn btn-medium btn-black">Add to Cart<svg class="cart-outline"><use xlink:href="#cart-outline"></use></svg></a>
+                      <a href="login.jsp" class="btn btn-medium btn-black">Add to Cart<svg class="cart-outline"><use xlink:href="#cart-outline"></use></svg></a>
                     </div>
                   </div>
                   <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
                     <h3 class="card-title text-uppercase">
-                      <a href="#">Iphone 10</a>
+                      <a href="login.jsp">Iphone 10</a>
                     </h3>
                     <span class="item-price text-primary">$980</span>
                   </div>
@@ -336,16 +333,16 @@
               <div class="swiper-slide">
                 <div class="product-card position-relative">
                   <div class="image-holder">
-                    <img src="images/product-item2.jpg" alt="product-item" class="img-fluid">
+                    <img src="image/product-item2.jpg" alt="product-item" class="img-fluid">
                   </div>
                   <div class="cart-concern position-absolute">
                     <div class="cart-button d-flex">
-                      <a href="#" class="btn btn-medium btn-black">Add to Cart<svg class="cart-outline"><use xlink:href="#cart-outline"></use></svg></a>
+                      <a href="login.jsp" class="btn btn-medium btn-black">Add to Cart<svg class="cart-outline"><use xlink:href="#cart-outline"></use></svg></a>
                     </div>
                   </div>
                   <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
                     <h3 class="card-title text-uppercase">
-                      <a href="#">Iphone 11</a>
+                      <a href="login.jsp">Iphone 11</a>
                     </h3>
                     <span class="item-price text-primary">$1100</span>
                   </div>
@@ -354,16 +351,16 @@
               <div class="swiper-slide">
                 <div class="product-card position-relative">
                   <div class="image-holder">
-                    <img src="images/product-item3.jpg" alt="product-item" class="img-fluid">
+                    <img src="image/product-item3.jpg" alt="product-item" class="img-fluid">
                   </div>
                   <div class="cart-concern position-absolute">
                     <div class="cart-button d-flex">
-                      <a href="#" class="btn btn-medium btn-black">Add to Cart<svg class="cart-outline"><use xlink:href="#cart-outline"></use></svg></a>
+                      <a href="login.jsp" class="btn btn-medium btn-black">Add to Cart<svg class="cart-outline"><use xlink:href="#cart-outline"></use></svg></a>
                     </div>
                   </div>
                   <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
                     <h3 class="card-title text-uppercase">
-                      <a href="#">Iphone 8</a>
+                      <a href="login.jsp">Iphone 8</a>
                     </h3>
                     <span class="item-price text-primary">$780</span>
                   </div>
@@ -372,16 +369,16 @@
               <div class="swiper-slide">
                 <div class="product-card position-relative">
                   <div class="image-holder">
-                    <img src="images/product-item4.jpg" alt="product-item" class="img-fluid">
+                    <img src="image/product-item4.jpg" alt="product-item" class="img-fluid">
                   </div>
                   <div class="cart-concern position-absolute">
                     <div class="cart-button d-flex">
-                      <a href="#" class="btn btn-medium btn-black">Add to Cart<svg class="cart-outline"><use xlink:href="#cart-outline"></use></svg></a>
+                      <a href="login.jsp" class="btn btn-medium btn-black">Add to Cart<svg class="cart-outline"><use xlink:href="#cart-outline"></use></svg></a>
                     </div>
                   </div>
                   <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
                     <h3 class="card-title text-uppercase">
-                      <a href="#">Iphone 13</a>
+                      <a href="login.jsp">Iphone 13</a>
                     </h3>
                     <span class="item-price text-primary">$1500</span>
                   </div>
@@ -390,16 +387,16 @@
               <div class="swiper-slide">
                 <div class="product-card position-relative">
                   <div class="image-holder">
-                    <img src="images/product-item5.jpg" alt="product-item" class="img-fluid">
+                    <img src="image/product-item5.jpg" alt="product-item" class="img-fluid">
                   </div>
                   <div class="cart-concern position-absolute">
                     <div class="cart-button d-flex">
-                      <a href="#" class="btn btn-medium btn-black">Add to Cart<svg class="cart-outline"><use xlink:href="#cart-outline"></use></svg></a>
+                      <a href="login.jsp" class="btn btn-medium btn-black">Add to Cart<svg class="cart-outline"><use xlink:href="#cart-outline"></use></svg></a>
                     </div>
                   </div>
                   <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
                     <h3 class="card-title text-uppercase">
-                      <a href="#">Iphone 12</a>
+                      <a href="login.jsp">Iphone 12</a>
                     </h3>
                     <span class="item-price text-primary">$1300</span>
                   </div>
@@ -412,13 +409,13 @@
       <div class="swiper-pagination position-absolute text-center"></div>
     </section>
     
-    <section id="yearly-sale" class="bg-light-blue overflow-hidden mt-5 padding-xlarge" style="background-image: url('images/single-image1.png');background-position: right; background-repeat: no-repeat;">
+    <section id="yearly-sale" class="bg-light-blue overflow-hidden mt-5 padding-xlarge" style="background-image: url('image/single-image1.png');background-position: right; background-repeat: no-repeat;">
       <div class="row d-flex flex-wrap align-items-center">
         <div class="col-md-6 col-sm-12">
           <div class="text-content offset-4 padding-medium">
             <h3>10% off</h3>
             <h2 class="display-2 pb-5 text-uppercase text-dark">New year sale</h2>
-            <a href="shop.html" class="btn btn-medium btn-dark text-uppercase btn-rounded-none">Shop Sale</a>
+            <a href="login.jsp" class="btn btn-medium btn-dark text-uppercase btn-rounded-none">Shop Sale</a>
           </div>
         </div>
         <div class="col-md-6 col-sm-12">
@@ -537,7 +534,7 @@
           <div class="d-flex flex-wrap">
             <figure class="instagram-item pe-2">
               <a href="https://templatesjungle.com/" class="image-link position-relative">
-                <img src="images/insta-item1.jpg" alt="instagram" class="insta-image">
+                <img src="image/insta-item1.jpg" alt="instagram" class="insta-image">
                 <div class="icon-overlay position-absolute d-flex justify-content-center">
                   <svg class="instagram">
                     <use xlink:href="#instagram"></use>
@@ -547,7 +544,7 @@
             </figure>
             <figure class="instagram-item pe-2">
               <a href="https://templatesjungle.com/" class="image-link position-relative">
-                <img src="images/insta-item2.jpg" alt="instagram" class="insta-image">
+                <img src="image/insta-item2.jpg" alt="instagram" class="insta-image">
                 <div class="icon-overlay position-absolute d-flex justify-content-center">
                   <svg class="instagram">
                     <use xlink:href="#instagram"></use>
@@ -557,7 +554,7 @@
             </figure>
             <figure class="instagram-item pe-2">
               <a href="https://templatesjungle.com/" class="image-link position-relative">
-                <img src="images/insta-item3.jpg" alt="instagram" class="insta-image">
+                <img src="image/insta-item3.jpg" alt="instagram" class="insta-image">
                 <div class="icon-overlay position-absolute d-flex justify-content-center">
                   <svg class="instagram">
                     <use xlink:href="#instagram"></use>
@@ -567,7 +564,7 @@
             </figure>
             <figure class="instagram-item pe-2">
               <a href="https://templatesjungle.com/" class="image-link position-relative">
-                <img src="images/insta-item4.jpg" alt="instagram" class="insta-image">
+                <img src="image/insta-item4.jpg" alt="instagram" class="insta-image">
                 <div class="icon-overlay position-absolute d-flex justify-content-center">
                   <svg class="instagram">
                     <use xlink:href="#instagram"></use>
@@ -577,7 +574,7 @@
             </figure>
             <figure class="instagram-item pe-2">
               <a href="https://templatesjungle.com/" class="image-link position-relative">
-                <img src="images/insta-item5.jpg" alt="instagram" class="insta-image">
+                <img src="image/insta-item5.jpg" alt="instagram" class="insta-image">
                 <div class="icon-overlay position-absolute d-flex justify-content-center">
                   <svg class="instagram">
                     <use xlink:href="#instagram"></use>
@@ -705,8 +702,8 @@
             <div class="Shipping d-flex">
               <p>We ship with:</p>
               <div class="card-wrap ps-2">
-                <img src="images/dhl.png" alt="visa">
-                <img src="images/shippingcard.png" alt="mastercard">
+                <img src="image/dhl.png" alt="visa">
+                <img src="image/shippingcard.png" alt="mastercard">
               </div>
             </div>
           </div>
@@ -714,9 +711,9 @@
             <div class="payment-method d-flex">
               <p>Payment options:</p>
               <div class="card-wrap ps-2">
-                <img src="images/visa.jpg" alt="visa">
-                <img src="images/mastercard.jpg" alt="mastercard">
-                <img src="images/paypal.jpg" alt="paypal">
+                <img src="image/visa.jpg" alt="visa">
+                <img src="image/mastercard.jpg" alt="mastercard">
+                <img src="image/paypal.jpg" alt="paypal">
               </div>
             </div>
           </div>

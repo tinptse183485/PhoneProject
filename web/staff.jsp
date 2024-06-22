@@ -120,7 +120,7 @@
                     <input type="number"  name="price" value="<%=  (float) product.getPrice()%>" required="" />
                 </td>
                  <td>
-                    <input type="number"  name="sale" value="<%=  (float) product.getSale()%>" required="" />
+                    <input type="number" step=".01"  name="sale" value="<%=  (float) product.getSale()%>" required="" />
                 </td>
                 
                 <td>

@@ -43,19 +43,16 @@ public class searchPhoneByPriceServlet extends HttpServlet {
         try {
             float min = Float.parseFloat(request.getParameter("fromPrice"));
             float max = Float.parseFloat(request.getParameter("toPrice"));
+            
             ProductDAO dao = new ProductDAO();
-            List<ProductDTO> listPhone = dao.getListProductByPrice(min, max);
-            if(listPhone.size()>0){
-                DecimalFormat df = new DecimalFormat("#");
-                for (ProductDTO phone : listPhone) {
-                    String formattedPrice = df.format(phone.getPrice());
-                    phone.setFormattedPrice(formattedPrice);
-                }
-                HttpSession session = request.getSession();
-                session.setAttribute("LIST_PRODUCT", listPhone);
+            List<ProductDTO> listPhone = dao.searchFullOptions(min, max);
+            
+            if(listPhone.size()>0){       
+               
+                request.setAttribute("LIST_PRODUCT", listPhone);
                 url=SUCCESS;
             }else {
-                request.setAttribute("ERROR", "No results found");
+                request.setAttribute("NO_RESULTS", "No results found");
             }
         } catch (Exception e) {
             request.setAttribute("ERROR", "Enter range correctly");
