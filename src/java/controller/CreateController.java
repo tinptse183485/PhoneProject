@@ -40,6 +40,7 @@ public class CreateController extends HttpServlet {
             String phone= request.getParameter("phone");
             String password= request.getParameter("password");
             String confirm= request.getParameter("confirm");
+            String address=request.getParameter("address");
             
             boolean checkValidation= true;
             if(userId.length()>50 || userId.length()<2){
@@ -72,7 +73,7 @@ public class CreateController extends HttpServlet {
                 checkValidation= false;
             }
             if(checkValidation){
-                UserDTO user= new UserDTO(userId, userName, role, password, mail, phone);
+                UserDTO user= new UserDTO(userId, userName, role, "***", mail, phone, address);
                 boolean checkInsert= dao.insertV2(user);
                 if(checkInsert){
                     url= SUCCESS;

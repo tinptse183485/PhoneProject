@@ -16,19 +16,22 @@ public class UserDTO {
     private String password;
     private String mail;
     private String phone;
+    private String address;
 
     public UserDTO() {
     }
 
-    public UserDTO(String userID, String userName, String role, String password, String mail, String phone) {
+    public UserDTO(String userID, String userName, String role, String password, String mail, String phone, String address) {
         this.userID = userID;
         this.userName = userName;
         this.role = role;
         this.password = password;
         this.mail = mail;
         this.phone = phone;
+        this.address = address;
     }
 
+   
     public String getUserID() {
         return userID;
     }
@@ -75,6 +78,14 @@ public class UserDTO {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
    

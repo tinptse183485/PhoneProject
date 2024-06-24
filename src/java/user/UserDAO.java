@@ -20,13 +20,13 @@ import utils.DBUtils;
  */
 public class UserDAO {
 
-    private static final String LOGIN = "SELECT userName,role,mail,phone FROM tblUser WHERE userId=? AND password=? ";
-    private static final String SEARCH = "SELECT userId, userName, role,mail,phone FROM tblUser WHERE userName like ?";
+    private static final String LOGIN = "SELECT userName,role,mail,phone,address FROM tblUser WHERE userId=? AND password=? ";
+    private static final String SEARCH = "SELECT userId, userName, role,mail,phone,address FROM tblUser WHERE userName like ?";
     private static final String DELETE = "DELETE tblUser WHERE userId=?";
-    private static final String UPDATE = "UPDATE tblUser SET userName=?, role=?, mail=?, phone=? WHERE userId=?";
+    private static final String UPDATE = "UPDATE tblUser SET userName=?, role=?, mail=?, phone=?,address=? WHERE userId=?";
     private static final String CHECK_DUPLICATE = "SELECT userId FROM tbl_User WHERE userId=?  ";
-    private static final String INSERT = "INSERT INTO tblUser (userId, userName, role, password,mail,phone) "
-            + "                         VALUES(?,?,?,?,?,?)";
+    private static final String INSERT = "INSERT INTO tblUser (userId, userName, role, password,mail,phone,address) "
+            + "                         VALUES(?,?,?,?,?,?,?)";
 
     public UserDTO checkLogin(String userId, String password) throws SQLException {
         UserDTO user = null;
@@ -47,7 +47,8 @@ public class UserDAO {
                     String role = rs.getString("role");
                     String mail = rs.getString("mail");
                     String phone = rs.getString("phone");
-                    user = new UserDTO(userId, userName, role, "***", mail, phone);            
+                    String address = rs.getString("address");
+                    user = new UserDTO(userId, userName, role, "***", mail, phone,address);            
                 }
             }
         } catch (Exception e) {
@@ -80,6 +81,7 @@ public class UserDAO {
                 ptm.setString(4, user.getPassword());
                 ptm.setString(5, user.getMail());
                 ptm.setString(6, user.getPhone());
+                ptm.setString(7, user.getAddress());
                 checkInsert= ptm.executeUpdate()>0?true:false;
             }
         } finally{
@@ -135,7 +137,8 @@ public class UserDAO {
                     String password= "***";
                     String mail= rs.getString("mail");
                     String phone= rs.getString("phone");
-                    list.add(new UserDTO(userId, userName, role, password, mail, phone));
+                    String address= rs.getString("address");
+                    list.add(new UserDTO(userId, userName, role, password, mail, phone,address));
                 }
             }
         } catch (Exception e) {

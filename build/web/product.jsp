@@ -329,7 +329,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="cart.html">
+                                            <a href="cart.jsp">
                                                 <svg class="cart">
                                                 <use xlink:href="#cart"></use>
                                                 </svg>
@@ -410,7 +410,18 @@
                 <% } else {
                 %> <span>$<%=product.getPrice()%></span>
                 <%}%>
-                <a href="#" class="cart-btn">Add to cart</a>
+                <form action="MainController" method="post">
+                     <input type="hidden" name="mobileName" value="<%= product.getMobileName()%>" />
+                                    <input type="hidden" name="mobileId" value="<%= product.getMobileId()%>" />
+                                    <input type="hidden" name="mobileBrand" value="<%= product.getMobileBrand()%>" />
+                                    <input type="hidden" name="image" value="<%= product.getImage()%>" />
+                                    <input type="hidden" name="description" value="<%= product.getDescription()%>" />
+                                    <input type="hidden" name="price" value="<%= product.getPrice()%>" />
+                                    <input type="hidden" name="quantity" value="<%= product.getQuantity()%>" />
+                                    <input type="hidden" name="sale" value="<%= product.getSale()%>" />
+
+                <button type="submit" name="action" value="Add to cart" class="cart-btn">Add to cart</button>
+                </form>
             </div>
         </div>
     </main>

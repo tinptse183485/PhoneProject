@@ -12,12 +12,12 @@ package Invoice;
  */
 public class InvoiceDTO {
     private String invId;
-    
     private String userID;
     private String dateBuy;
     private String gmail;
     private String address;
     private float total;
+    
     public InvoiceDTO() {
     }
 

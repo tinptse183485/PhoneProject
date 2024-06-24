@@ -19,7 +19,7 @@ public class DBUtils {
         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
         String url= "jdbc:sqlserver://localhost:1433;databaseName=FinalProject;encrypt=true;trustServerCertificate=true;";
         conn= DriverManager.getConnection(url,"sa","12345");
-        System.out.println("connected");
+        
      
         return conn;
     }

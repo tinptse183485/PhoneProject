@@ -148,7 +148,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="cart.html">
+                                            <a href="cart.jsp">
                                                 <svg class="cart">
                                                 <use xlink:href="#cart"></use>
                                                 </svg>
@@ -256,14 +256,14 @@
                                             <div class="bi-star-fill"></div>
                                         </div>
                                     </div>
-                                    <input type="hidden" name="mobileName" value="<%= product.getMobileName()%>" />
-                                    <input type="hidden" name="mobileId" value="<%= product.getMobileId()%>" />
-                                    <input type="hidden" name="mobileBrand" value="<%= product.getMobileBrand()%>" />
+                                   
+                                    <input type="hidden" name="mobileId" value="<%= product.getMobileName()%>" />
                                     <input type="hidden" name="image" value="<%= product.getImage()%>" />
                                     <input type="hidden" name="description" value="<%= product.getDescription()%>" />
-                                    <input type="hidden" name="image" value="<%= product.getPrice()%>" />
-                                    <input type="hidden" name="image" value="<%= product.getQuantity()%>" />
-                                    <input type="hidden" name="image" value="<%= product.getSale()%>" />
+                                    <input type="hidden" name="price" value="<%= product.newPrice()%>" />
+                                    <input type="hidden" name="invId" value="null">
+                                    <input type="hidden" name="quantity" value="1">
+                                    <input type="hidden" name="userID" value="<%= loginUser.getUserID() %>">
 
 
                                 </div>

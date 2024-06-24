@@ -42,8 +42,9 @@ public class UpdateUserController extends HttpServlet {
             }
             String mail = request.getParameter("mail");
             String phone = request.getParameter("phone");
+            String address = request.getParameter("address");
 
-            UserDTO user = new UserDTO(userID, userName, role, "***", mail, phone);
+            UserDTO user = new UserDTO(userID, userName, role, "***", mail, phone, address);
             UserDAO dao = new UserDAO();
             HttpSession session = request.getSession();
             UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");

@@ -5,16 +5,20 @@
  */
 package controller;
 
+import cart.CartDAO;
+import cart.CartDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import product.ProductDAO;
 import product.ProductDTO;
 
 /**
@@ -33,60 +37,52 @@ public class AddToCartServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private static final String ERROR="user.jsp";
-    private static final String SUCCESS="user.jsp";
-    
+    private static final String ERROR = "user.jsp";
+    private static final String SUCCESS = "user.jsp";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession();
         String url = ERROR;
         try {
+            CartDAO dao = new CartDAO();
+            String userID = request.getParameter("userID").trim();
             String mobileId = request.getParameter("mobileId");
-            String description = request.getParameter("description");
             float price = Float.parseFloat(request.getParameter("price"));
-            String mobileName = request.getParameter("mobileName");
-            String image =request.getParameter("image");
-            String mobileBrand = request.getParameter("mobileBrand");
+            String invId = request.getParameter("invId");
+            String image = request.getParameter("image");
             int quantity = Integer.parseInt(request.getParameter("quantity"));
+            float totalPrice = price * quantity;
+            String cartId = "P" + new Random().nextInt(10000);
 
-            List<ProductDTO> cart = (List<ProductDTO>) session.getAttribute("cart");
-            if (cart == null) {
-                cart = new ArrayList<>();
-            }
+            // Check if the glasses already exist in the cart
+            CartDTO existingCart = dao.getCartByGlassesId(mobileId, userID);
+            System.out.println(existingCart);
+            if (existingCart != null) {
+                // If the glasses already exist in the cart, update the quantity
+                existingCart.setQuantity(existingCart.getQuantity() + quantity);
+                existingCart.setTotalPrice(price * existingCart.getQuantity());
+                boolean check = dao.updateCart(existingCart);
+                if (check) {
+                    request.setAttribute("message", "Updated quantity of item in cart successfully.");
+                } else {
+                    request.setAttribute("message", "Failed to update quantity of item.");
+                }
+            } else {
+                // If the glasses do not exist in the cart, add a new entry
 
-            boolean found = false;
-            for (ProductDTO product : cart) {
-                if (product.getMobileId().equals(mobileId)) {
-                    product.setQuantity(product.getQuantity() + 1);
-                    found = true;
-                    break;
+                boolean check = dao.addToCart(cartId, mobileId, price, totalPrice, quantity, image, userID, invId);
+                if (check) {
+                    url = SUCCESS;
+                    request.setAttribute("message", "Add to cart successfully.");
+                } else {
+                    request.setAttribute("message", "Failed to add to cart.");
                 }
             }
 
-            if (!found) {
-                cart.add(new ProductDTO(mobileId, description, price, mobileName, mobileBrand, quantity, price, image));
-            }
-
-            session.setAttribute("cart", cart);
-
-            // Update the quantity in the stock
-            List<ProductDTO> phoneList = (List<ProductDTO>) session.getAttribute("LIST_PHONE");
-            if (phoneList != null) {
-                for (ProductDTO phone : phoneList) {
-                    if (phone.getMobileId().equals(mobileId)) {
-                        phone.setQuantity( phone.getQuantity()- 1);
-                        break;
-                    }
-                }
-                session.setAttribute("LIST_PHONE", phoneList);
-            }
-
-            url = SUCCESS;
-            request.setAttribute("SUCCESS", "Product added to cart successfully!");
         } catch (Exception e) {
-            log("Error at AddToCartServlet: " + e.toString());
-            request.setAttribute("ERROR", "Error occurred while adding product to cart.");
+            System.out.println("xui");
+            log("Error at AddToCartController: " + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
