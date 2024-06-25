@@ -16,7 +16,7 @@ public class ProductDAO {
             + "                         VALUES(?,?,?,?,?,?,?)";
     private static final String SEARCH_BY_ID_OR_NAME = "SELECT mobileId, description, price, mobileName, yearOfProduction, quantity, notSale FROM tbl_Mobile WHERE mobileId LIKE ? OR mobileName LIKE ?";
     private static final String SEARCH_BY_PRICE_RANGE = "SELECT mobileId, description, price, mobileName, mobileBrand, quantity,sale,image  FROM tblMobile WHERE price BETWEEN ? AND ?";
-    private static final String UPDATE_QUANTITY = "UPDATE tbl_Mobile SET quantity=? WHERE mobileId=?";
+    private static final String UPDATE_QUANTITY = "UPDATE tblMobile SET quantity=? WHERE mobileId=?";
 
     public List<ProductDTO> getListProductByPrice(double fromPrice, double toPrice) throws Exception {
         List<ProductDTO> list = new ArrayList<>();
@@ -282,7 +282,7 @@ public class ProductDAO {
 
     }
 
-    public ProductDTO getProduct(String mobileName) throws Exception {
+    public ProductDTO getProductByName(String mobileName) throws Exception {
         ProductDTO product = new ProductDTO();
         String sql = "SELECT mobileId,mobileBrand, description, mobileName, price, quantity,sale,image FROM tblMobile WHERE mobileName=?";
 
@@ -292,6 +292,29 @@ public class ProductDAO {
                 while (rs.next()) {
                     String mobileId = rs.getString("mobileId");
 
+                    String imgae = rs.getString("image");
+                    double price = rs.getDouble("price");
+                    int quantity = rs.getInt("quantity");
+                    double sale = rs.getDouble("sale");
+                    String mobileBrand = rs.getString("mobileBrand");
+                    String description = rs.getString("description");
+                    product = new ProductDTO(mobileId, description, price, mobileName, mobileBrand, quantity, sale, imgae);
+                }
+            }
+        }
+
+        return product;
+    }
+    
+    public ProductDTO getProductbyId(String mobileId) throws Exception {
+        ProductDTO product = new ProductDTO();
+        String sql = "SELECT mobileId,mobileBrand, description, mobileName, price, quantity,sale,image FROM tblMobile WHERE mobileId=?";
+
+        try (Connection conn = DBUtils.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, mobileId);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    String mobileName = rs.getString("mobibleName");
                     String imgae = rs.getString("image");
                     double price = rs.getDouble("price");
                     int quantity = rs.getInt("quantity");

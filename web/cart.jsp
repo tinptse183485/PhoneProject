@@ -56,6 +56,7 @@
                                     <% float totalCost = 0;
 
                                         String invId = (String) session.getAttribute("invId");
+                                        
                                         if (invId == null) {
                                             invId = "INV-" + new Random().nextInt(10000);
                                             session.setAttribute("invId", invId);
@@ -86,7 +87,7 @@
                                         <td><%=cart.getTotalPrice()%></td>
                                         <td> 
                                             <input type="hidden" name="cartId" value="<%=cart.getCartId()%>">
-                                            <button name="action"value="Remove" class="btn btn-primary btn-sm">X</button>
+                                            <button name="action"value="RemoveCart" class="btn btn-primary btn-sm">X</button>
                                         </td>
                                     </tr>
                                 </form>    
@@ -164,6 +165,7 @@
                                         </div>     
                                         <%
                                             } else {
+
                                                 request.setAttribute("message", "Cannot checkout");
 
                                             }%>

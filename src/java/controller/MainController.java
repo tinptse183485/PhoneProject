@@ -49,6 +49,8 @@ public class MainController extends HttpServlet {
     private static final String CHANGE_CONTROLLER = "ChangeController";
     private static final String REMOVE = "Remove";
     private static final String REMOVE_CONTROLLER = "RemoveController";
+    private static final String REMOVE_CART = "RemoveCart";
+    private static final String REMOVE_CART_CONTROLLER = "RemoveCartController";
     private static final String Search_Phone_Price = "SEARCH";
     private static final String Search_Phone_Price_CONTROLLER = "searchPhoneByPriceServlet";
     private static final String Buy = "Buy";
@@ -111,6 +113,8 @@ public class MainController extends HttpServlet {
                 url = BACK_MENU_CONTROLLER;
             }else if (CONTINUE_SHOPPING.equals(action)) {
                 url = CONTINUE_SHOPPING_CONTROLLER;
+            }else if (REMOVE_CART.equals(action)) {
+                url = REMOVE_CART_CONTROLLER;
             }else if (APPLE.equals(brand) ||SAMSUNG.equals(brand) ||OPPO.equals(brand) ||LENOVO.equals(brand) ) {
                 url = CATEGORY_CONTROLLER;
             } else {

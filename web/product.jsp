@@ -353,7 +353,7 @@
     <main class="container">
         <% String mobileName = request.getParameter("name");
             ProductDAO dao = new ProductDAO();
-            ProductDTO product = dao.getProduct(mobileName);
+            ProductDTO product = dao.getProductByName(mobileName);
         %>
         <!-- Left Column / Headphones Image -->
         <div class="left-column">

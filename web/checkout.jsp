@@ -68,7 +68,7 @@
                 <div class="form-group row">
                     <div class="col-md-12">
                         <label for="c_gmail" class="text-black">Email <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="c_gmail" name="gmail"value="<%=loginUser.getGmail()%>" placeholder="Enter email">
+                        <input type="text" class="form-control" id="c_gmail" name="gmail"value="<%=loginUser.getMail()%>" placeholder="Enter email">
                     </div>
                 </div>
 
@@ -102,7 +102,7 @@
                                 totalCost += cart.getTotalPrice();
                             %>
                                 <tr>
-                                    <td><%=cart.getIdGlasses()%> <strong class="mx-2">x</strong> <%=cart.getQuantity()%></td>
+                                    <td><%=cart.getMobileId()%> <strong class="mx-2">x</strong> <%=cart.getQuantity()%></td>
                                     <td>$<%=cart.getTotalPrice()%></td>
                                 </tr>
                             <% 
@@ -117,7 +117,7 @@
                     </table>
                     <div class="form-group">
                         <input type="hidden" name="total" value="<%=totalCost%>">
-                        <button type="submit"name="action" value="CreateInvoice" class="btn btn-primary btn-lg py-3 btn-block">Place Order</button>
+                        <button type="submit" name="action" value="CreateInvoice" class="btn btn-primary btn-lg py-3 btn-block">Place Order</button>
                       </div>
                 </div>
             </div>
