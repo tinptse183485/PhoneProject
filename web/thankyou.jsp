@@ -24,11 +24,10 @@
   <body>
    <%
             UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
+            System.out.println(loginUser.getUserID());
+            System.out.println(loginUser.getPassword());
            
         %>    
-
- 
-    
 
     <div class="bg-light py-3">
       <div class="container">
@@ -45,11 +44,11 @@
             <span class="icon-check_circle display-3 text-success"></span>
             <h2 class="display-3 text-black">Thank you!</h2>
             <p class="lead mb-5">You order was successfuly completed.</p>
-            <form action="LoginController" method="POST">
-                <input type="hidden" name="userIDorEmail" value="<%=loginUser.getUserID()%>">
-                <input type="hidden" name="password" value="<%=loginUser.getPassword()%>">
+            <form action="MainController" method="POST">
+                <input type="hidden" name="user" value="<%=loginUser.getUserID()%>">
+                <input type="hidden" name="pass" value="<%=loginUser.getUserID()%>">
                 <input type="hidden" name="action" value="Login">
-                <button type="submit" class="btn btn-sm btn-primary">Back to shop</button>
+                <button  type="submit" class="btn btn-sm btn-primary">Back to shop</button>
             </form>
           </div>
         </div>

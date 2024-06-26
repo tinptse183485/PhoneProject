@@ -48,7 +48,7 @@ public class UserDAO {
                     String mail = rs.getString("mail");
                     String phone = rs.getString("phone");
                     String address = rs.getString("address");
-                    user = new UserDTO(userId, userName, role, "***", mail, phone,address);            
+                    user = new UserDTO(userId, userName, role, password, mail, phone,address);            
                 }
             }
         } catch (Exception e) {

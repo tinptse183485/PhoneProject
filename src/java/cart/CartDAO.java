@@ -46,8 +46,20 @@ public class CartDAO {
     return response;
 }
 
+    public boolean removeCartByUserId(String userId) {
+        String sql = "DELETE FROM tblCart WHERE userId = ?;";
+        boolean response = true;
+        try {
+            connection = DBUtils.getConnection();
+            ps = connection.prepareStatement(sql);
+            ps.setString(1, userId);
+            response = ps.executeUpdate() > 0 ? true : false;
+        } catch (Exception ex) {
+        }
+        return response;
+    }
     public boolean removeFromCart(String cartId) {
-        String sql = "DELETE FROM tblCart WHERE cartId = ?;";
+        String sql = "DELETE FROM tblCart WHERE cartId=? ;";
         boolean response = true;
         try {
             connection = DBUtils.getConnection();

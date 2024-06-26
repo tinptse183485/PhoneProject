@@ -8,6 +8,7 @@ package controller;
 
 import Invoice.InvoiceDAO;
 import Invoice.InvoiceDTO;
+import cart.CartDAO;
 import cart.CartDTO;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -56,6 +57,10 @@ public class CreateInvoiceController extends HttpServlet {
                 for (CartDTO cart: cartList){
                     pDAO.updateQuantity(pDAO.getProductByName(cart.getMobileId()).getMobileId(), pDAO.getProductByName(cart.getMobileId()).getQuantity()-cart.getQuantity());
                 }
+                CartDAO cDAO = new CartDAO();
+                cDAO.removeCartByUserId(userID);
+                                                                session.setAttribute("invId",null);
+
                 url= SUCCESS;
             }
         } catch (Exception e) {
