@@ -64,6 +64,11 @@ public class MainController extends HttpServlet {
     private static final String LENOVO = "LENOVO";
     private static final String OPPO = "OPPO";
     private static final String CATEGORY_CONTROLLER = "CategoryController";
+    private static final String WISHLIST = "WISHLIST";
+    private static final String WISHLIST_CONTROLLER = "WishListController";
+    private static final String IS_WISHLIST = "wishlist";
+    private static final String IS_WISHLIST_CONTROLLER = "IsWishListController";
+    
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -115,6 +120,13 @@ public class MainController extends HttpServlet {
                 url = CONTINUE_SHOPPING_CONTROLLER;
             }else if (REMOVE_CART.equals(action)) {
                 url = REMOVE_CART_CONTROLLER;
+                
+            }else if (WISHLIST.equals(brand)) {
+                url = WISHLIST_CONTROLLER;
+                
+            }else if (IS_WISHLIST.equals(action)) {
+                url = IS_WISHLIST_CONTROLLER;
+                
             }else if (APPLE.equals(brand) ||SAMSUNG.equals(brand) ||OPPO.equals(brand) ||LENOVO.equals(brand) ) {
                 url = CATEGORY_CONTROLLER;
             } else {

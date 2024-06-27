@@ -12,6 +12,7 @@
             <file>file:/D:/PRJ/PhoneProject/src/java/controller/RemoveController.java</file>
             <file>file:/D:/PRJ/PhoneProject/src/java/controller/SearchUserController.java</file>
             <file>file:/D:/PRJ/PhoneProject/src/java/cart/CartDTO.java</file>
+            <file>file:/D:/PRJ/PhoneProject/src/java/controller/IsWishListController.java</file>
             <file>file:/D:/PRJ/PhoneProject/web/checkout.jsp</file>
             <file>file:/D:/PRJ/PhoneProject/src/java/controller/UpdateController.java</file>
             <file>file:/D:/PRJ/PhoneProject/web/WEB-INF/web.xml</file>
@@ -43,6 +44,7 @@
             <file>file:/D:/PRJ/PhoneProject/src/java/controller/ChangeController.java</file>
             <file>file:/D:/PRJ/PhoneProject/src/java/user/UserDTO.java</file>
             <file>file:/D:/PRJ/PhoneProject/src/java/controller/SearchInvoiceController.java</file>
+            <file>file:/D:/PRJ/PhoneProject/src/java/controller/WishListController.java</file>
             <file>file:/D:/PRJ/PhoneProject/web/addPhone.jsp</file>
             <file>file:/D:/PRJ/PhoneProject/web/styleProduct.css</file>
             <file>file:/D:/PRJ/PhoneProject/src/java/product/ProductDAO.java</file>

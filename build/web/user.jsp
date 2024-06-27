@@ -23,7 +23,7 @@
         <meta name="keywords" content="">
         <meta name="description" content="">
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -106,7 +106,9 @@
     <symbol xmlns="http://www.w3.org/2000/svg" id="navbar-icon" viewBox="0 0 16 16">
         <path d="M14 10.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 .5-.5zm0-3a.5.5 0 0 0-.5-.5h-7a.5.5 0 0 0 0 1h7a.5.5 0 0 0 .5-.5zm0-3a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0 0 1h11a.5.5 0 0 0 .5-.5z" />
     </symbol>
+    
     </svg>  
+
 
     <header id="header" class="site-header header-scrolled position-fixed text-black bg-light">
         <nav id="header-nav" class="navbar navbar-expand-lg px-3 mb-3">
@@ -137,7 +139,7 @@
                                             <a href="home.jsp" class="search-button">
                                                 <div>
                                                     <form action="MainController" method="post">
-                                                        <button style="border:none" name="action" value="Logoutt">Log Out</button>
+                                                        <button style="border:none" name="action" value="Logout">Log Out</button>
                                                     </form>
                                                 </div>
                                             </a>
@@ -243,17 +245,20 @@
                                         %>
                                         <div>
                                             <span class="old-price">$<%=product.getPrice()%></span>
-                                            <span class="new-price">         $<%=product.newPrice()%></span>
+                                            <span class="new-price">$<%=product.newPrice()%></span>
                                         </div>
                                         <% } else {
                                         %> <span>$<%=product.getPrice()%></span>
                                         <%}%>
-                                        <div class="d-flex justify-content-center small text-warning mb-2">
-                                            <div class="bi-star-fill"></div>
-                                            <div class="bi-star-fill"></div>
-                                            <div class="bi-star-fill"></div>
-                                            <div class="bi-star-fill"></div>
-                                            <div class="bi-star-fill"></div>
+                                        <div class="d-flex justify-content-center  text-warning mb-2">
+                                            
+                                                <input type="hidden" name="userID" value="<%= loginUser.getUserID() %>">
+                                                <%if(dao.isWishList(product.getMobileId())){%>
+                                               <i type="submit" name="action" value="wishlist" class="bi bi-balloon-heart-fill"></i>
+                                               <% }else{ %>
+                                               <i type="submit" name="action" value="wishlist" class="bi bi-balloon-heart"></i>
+                                               <% }%>
+                                            
                                         </div>
                                     </div>
                                    
