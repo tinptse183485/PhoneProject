@@ -178,9 +178,13 @@ public class UserDAO {
                 ptm= conn.prepareStatement(UPDATE);
                 ptm.setString(1, user.getUserName());
                 ptm.setString(2, user.getRole());
+                if (!user.getRole().equalsIgnoreCase("MA") && !user.getRole().equalsIgnoreCase("US") && !user.getRole().equalsIgnoreCase("ST")){
+                return false;}
                 ptm.setString(3, user.getMail());
                 ptm.setString(4, user.getPhone());
-                ptm.setString(5, user.getUserID());
+                ptm.setString(5, user.getAddress());
+                ptm.setString(6, user.getUserID());
+                
                 
                 checkUpdate= ptm.executeUpdate()>0?true:false;
             }

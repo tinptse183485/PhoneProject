@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,6 +20,7 @@ public class RemoveController extends HttpServlet {
         try {
             ProductDAO dao = new ProductDAO();
             dao.removeProduct(productId);
+            request.setAttribute("MESSAGE", "REMOVE SUCCESSFULLY");
             
             request.getRequestDispatcher(SEARCH_PAGE).forward(request, response);
         } catch (Exception e) {

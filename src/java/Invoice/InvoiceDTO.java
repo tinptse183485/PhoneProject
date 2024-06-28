@@ -17,18 +17,22 @@ public class InvoiceDTO {
     private String gmail;
     private String address;
     private float total;
+    private String phone;
     
     public InvoiceDTO() {
     }
 
-    public InvoiceDTO(String invId, String userID, String dateBuy, String gmail, String address, float total) {
+    public InvoiceDTO(String invId, String userID, String dateBuy, String gmail, String address, float total, String phone) {
         this.invId = invId;
         this.userID = userID;
         this.dateBuy = dateBuy;
         this.gmail = gmail;
         this.address = address;
         this.total = total;
+        this.phone = phone;
     }
+
+    
 
     public String getInvId() {
         return invId;
@@ -76,6 +80,14 @@ public class InvoiceDTO {
 
     public void setTotal(float total) {
         this.total = total;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
     
     

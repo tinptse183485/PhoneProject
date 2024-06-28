@@ -68,6 +68,10 @@ public class MainController extends HttpServlet {
     private static final String WISHLIST_CONTROLLER = "WishListController";
     private static final String IS_WISHLIST = "wishlist";
     private static final String IS_WISHLIST_CONTROLLER = "IsWishListController";
+    private static final String SEARCH_INVOICE = "SearchInvoice";
+    private static final String SEARCH_INVOICE_CONTROLLER = "SearchInvoiceController";
+    private static final String SEARCH_BY_NAME = "searchByName";
+    private static final String SEARCH_BY_NAME_CONTROLLER = "SearchMobileByNameController";
     
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -124,8 +128,16 @@ public class MainController extends HttpServlet {
             }else if (WISHLIST.equals(brand)) {
                 url = WISHLIST_CONTROLLER;
                 
+            }else if (SEARCH_INVOICE.equals(action)) {
+                url = SEARCH_INVOICE_CONTROLLER;
+                
             }else if (IS_WISHLIST.equals(action)) {
+               
                 url = IS_WISHLIST_CONTROLLER;
+                
+            }else if (SEARCH_BY_NAME.equals(action)) {
+               
+                url = SEARCH_BY_NAME_CONTROLLER;
                 
             }else if (APPLE.equals(brand) ||SAMSUNG.equals(brand) ||OPPO.equals(brand) ||LENOVO.equals(brand) ) {
                 url = CATEGORY_CONTROLLER;

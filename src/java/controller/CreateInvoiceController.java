@@ -38,6 +38,7 @@ public class CreateInvoiceController extends HttpServlet {
             String invId= request.getParameter("invId");
             String userID= request.getParameter("userID");
             String dateBuy = request.getParameter("dateBuy");
+            String phone = request.getParameter("phone");
             HttpSession session= request.getSession();
             
                 Date date = new Date();
@@ -48,7 +49,7 @@ public class CreateInvoiceController extends HttpServlet {
             String address= request.getParameter("address");
             float total= Float.parseFloat(request.getParameter("total"));
             
-            InvoiceDTO invoice= new InvoiceDTO(invId, userID, dateBuy, gmail, address, total);
+            InvoiceDTO invoice= new InvoiceDTO(invId, userID, dateBuy, gmail, address, total, phone);
             boolean checkInsert= dao.createInvoice(invoice);
             if(checkInsert){
                 List<CartDTO> cartList = (List<CartDTO>) session.getAttribute("cartList");
@@ -59,7 +60,7 @@ public class CreateInvoiceController extends HttpServlet {
                 }
                 CartDAO cDAO = new CartDAO();
                 cDAO.removeCartByUserId(userID);
-                                                                session.setAttribute("invId",null);
+                session.setAttribute("invId",null);
 
                 url= SUCCESS;
             }

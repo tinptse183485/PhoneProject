@@ -135,6 +135,7 @@
                             <li class="nav-item">
                                 <div style="margin-top:1.5rem" class="user-items ps-5">
                                     <ul class="d-flex justify-content-end list-unstyled">
+                                        
                                         <li class="search-item pe-3">
                                             <a href="home.jsp" class="search-button">
                                                 <div>
@@ -145,7 +146,7 @@
                                             </a>
                                         </li>
                                         <li class="pe-3">
-                                            <a href="login.jsp">
+                                            <a href="#">
                                                 <p style="color:#212529"><%= loginUser.getUserName()%><p>
                                             </a>
                                         </li>
@@ -194,6 +195,7 @@
                     <legend>Categories</legend>
                     <div>
                         </br>
+                        <input type="hidden" name="userID" value="<%=loginUser.getUserID()%>">
                         <input class="brand" type="submit" name="brand" value="WISHLIST">  </br>
                         <input class="brand" type="submit" name="brand" value="APPLE">  </br>
                         <input class="brand" type="submit" name="brand" value="SAMSUNG">    </br>
@@ -215,6 +217,14 @@
                         <button type="submit" name="action" value="SEARCH">SEARCH</button>
                     </div>
                 </div>
+                        
+                        <div>
+                            <legend>Search by Name</legend>
+                            <input class="option-search" type="text"  name="mobileName" placeholder="Phone Name" /> </br>
+                        </div>
+                        <div>
+                        <button type="submit" name="action" value="searchByName">SEARCH</button>
+                        </div>
             </form>
 
 
@@ -228,6 +238,7 @@
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     <%
                         for (ProductDTO product : listProduct) {
+                            if(product.getQuantity()>0){
                     %>
                     <form action="MainController" method="post">
                         <div style="height:450px" class="col mb-4">
@@ -252,11 +263,17 @@
                                         <%}%>
                                         <div class="d-flex justify-content-center  text-warning mb-2">
                                             
-                                                <input type="hidden" name="userID" value="<%= loginUser.getUserID() %>">
-                                                <%if(dao.isWishList(product.getMobileId())){%>
-                                               <i type="submit" name="action" value="wishlist" class="bi bi-balloon-heart-fill"></i>
+                                               
+                                                <input type="hidden" name="mobileID" value="<%= product.getMobileId() %>">
+                                               <% Boolean check =(Boolean) request.getAttribute("isWishList");
+                                               if (check==null){
+                                                   check=dao.isWishList(product.getMobileId(),loginUser.getUserID());
+                                               }
+                                                   if(check){%>
+                                                   <button style="color:red" type="submit" name="action" value="wishlist"> <i  class="bi bi-balloon-heart-fill"></i></button>                                             
+
                                                <% }else{ %>
-                                               <i type="submit" name="action" value="wishlist" class="bi bi-balloon-heart"></i>
+                                              <button type="submit" name="action" value="wishlist"> <i  class="bi bi-balloon-heart"></i></button>
                                                <% }%>
                                             
                                         </div>
@@ -279,6 +296,7 @@
                             </div>
                         </div>
                     </form>
+                                    <%}%>
                     <%}%>
 
                 </div>

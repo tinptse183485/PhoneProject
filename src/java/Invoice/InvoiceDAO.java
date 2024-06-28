@@ -36,7 +36,8 @@ public class InvoiceDAO {
                     rs.getString("dateBuy"),
                     rs.getString("gmail"),
                     rs.getString("address"),
-                    rs.getFloat("total")
+                    rs.getFloat("total"),
+                    rs.getString("phone")
             );
             invoiceList.add(invoice);
         }
@@ -50,7 +51,7 @@ public class InvoiceDAO {
     return invoiceList;
 }
 public boolean createInvoice(InvoiceDTO invoice) throws ClassNotFoundException, SQLException {
-    String sql = "INSERT INTO tblInvoice (invId, userID, dateBuy, gmail, address, total) VALUES (?, ?, ?, ?, ?, ?)";
+    String sql = "INSERT INTO tblInvoice (invId, userID, dateBuy, gmail, address, total,phone) VALUES (?, ?, ?, ?, ?, ?,?)";
     boolean response = false;
    
     try {
@@ -63,6 +64,7 @@ public boolean createInvoice(InvoiceDTO invoice) throws ClassNotFoundException, 
             ps.setString(4, invoice.getGmail());
             ps.setString(5, invoice.getAddress());
             ps.setFloat(6, invoice.getTotal());
+            ps.setString(7,invoice.getPhone());
             response = ps.executeUpdate() > 0;
         }
     } finally {
@@ -74,7 +76,7 @@ public boolean createInvoice(InvoiceDTO invoice) throws ClassNotFoundException, 
 public List<InvoiceDTO> getInvoicesByUser(String userID) throws ClassNotFoundException, SQLException {
     List<InvoiceDTO> invoiceList = new ArrayList<InvoiceDTO>();
     InvoiceDTO invoice;
-    String sql = "SELECT * FROM tblInvoice WHERE userID = ?;";
+    String sql = "SELECT * FROM tblInvoice WHERE userID like ?;";
     try {
         connection = DBUtils.getConnection();
         ps = connection.prepareStatement(sql);
@@ -88,7 +90,8 @@ public List<InvoiceDTO> getInvoicesByUser(String userID) throws ClassNotFoundExc
                     rs.getString("dateBuy"),
                     rs.getString("gmail"),
                     rs.getString("address"),
-                    rs.getFloat("total")
+                    rs.getFloat("total"),
+                    rs.getString("phone")
             );
             invoiceList.add(invoice);
         }

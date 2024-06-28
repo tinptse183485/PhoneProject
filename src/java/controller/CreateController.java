@@ -73,7 +73,7 @@ public class CreateController extends HttpServlet {
                 checkValidation= false;
             }
             if(checkValidation){
-                UserDTO user= new UserDTO(userId, userName, role, "***", mail, phone, address);
+                UserDTO user= new UserDTO(userId, userName, role, password, mail, phone, address);
                 boolean checkInsert= dao.insertV2(user);
                 if(checkInsert){
                     url= SUCCESS;

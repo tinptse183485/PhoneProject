@@ -42,7 +42,7 @@ public class ChangeController extends HttpServlet {
             int newQuantity = Integer.parseInt(quantityStr); // Parse the quantity string
             System.out.println(product.getQuantity());
             if (newQuantity>product.getQuantity()){
-                request.setAttribute("message", "Số lượng hàng còn lại không đủ");
+                request.setAttribute("error", "Not enough in stock");
             }else
                 if (existingCart != null) { // Check if existingCart is not null
                     existingCart.setCartId(cartId);

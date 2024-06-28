@@ -22,8 +22,8 @@ import product.ProductDTO;
 @WebServlet(name = "UpdateController", urlPatterns = {"/UpdateController"})
 public class UpdateController extends HttpServlet {
 
-    private static final String SUCCESS = "SearchController";
-    private static final String ERROR = "SearchController";
+    private static final String SUCCESS = "staff.jsp";
+    private static final String ERROR = "staff.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -42,30 +42,33 @@ public class UpdateController extends HttpServlet {
             
             if(price<0) 
             {
-                request.setAttribute("ERROR", "Nhập giá lớn hơn hoặc bằng 0, buôn bán ít nhất cũng phải hòa vốn ");
+                request.setAttribute("ERROR", "Invalid price , must be highger than 0 ");
                 request.getRequestDispatcher(url).forward(request, response);
-            }
+            }else
             
             if(quantity<0) 
             {
-                request.setAttribute("ERROR", "Nhập số lượng lớn hơn hoặc bằng 0 nhé");
+                request.setAttribute("ERROR", "Invalid quantity , must be highger than 0");
                 request.getRequestDispatcher(url).forward(request, response);
-            }
-            if(sale>1 && sale<0){
-                request.setAttribute("ERROR", "Invalid sale, (0<sale<1)");
-                request.getRequestDispatcher(url).forward(request, response);
+            }else
+            if(sale>1 || sale<0){
                 
-            }
+                request.setAttribute("ERROR", "Invalid sale , must be lower than 1 and highger than 0 ");
+                request.getRequestDispatcher(url).forward(request, response);
+  
+            }else{
            
            
             ProductDTO product = new ProductDTO(mobileId, description, price, mobileName, mobileBrand, quantity, sale, image);
             ProductDAO dao = new ProductDAO();
             boolean checkUpdate = dao.update(product);
             if (checkUpdate) {
-                request.setAttribute("MESSAGE", "update thanh cong");
+                request.setAttribute("MESSAGE", "UPDATE SUCCESSFULLY");
+                
                 url = SUCCESS;
             } else {
                 request.setAttribute("ERROR", "update that bai");
+            }
             }
         } catch (Exception e) {
             log("Error at Update Controller" + e.toString());

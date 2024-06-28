@@ -242,17 +242,17 @@ public class ProductDAO {
         return list;
 
     }
-    public List<ProductDTO> searchbyId(String mobileId) throws Exception {
+    public List<ProductDTO> searchbyName(String mobileName) throws Exception {
         List<ProductDTO> list = new ArrayList<>();
-        String sql = "SELECT mobileId,mobileBrand, description, mobileName, price, quantity,sale,image FROM tblMobile WHERE mobileId = ?";
+        String sql = "SELECT mobileId,mobileBrand, description, mobileName, price, quantity,sale,image FROM tblMobile WHERE mobileName Like ?";
 
         try (Connection conn = DBUtils.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setString(1, mobileId);
+            ps.setString(1, mobileName);
             try (ResultSet rs = ps.executeQuery()) {
 
                 while (rs.next()) {
                     String mobileBrand = rs.getString("mobileBrand");
-                    String mobileName = rs.getString("mobileName");
+                    String mobileId = rs.getString("mobileId");
                     String imgae = rs.getString("image");
                     double price = rs.getDouble("price");
                     int quantity = rs.getInt("quantity");
@@ -278,17 +278,19 @@ public class ProductDAO {
                     String mobileId = rs.getString("mobileId");
                     sql = "SELECT mobileId,mobileBrand, description, mobileName, price, quantity,sale,image FROM tblMobile WHERE mobileId = ?";
                     PreparedStatement ps1 = conn.prepareStatement(sql);
-                    ps.setString(1, mobileId);
-                    ResultSet rs1 = ps.executeQuery();
+                    ps1.setString(1, mobileId);
+                    
+                    ResultSet rs1 = ps1.executeQuery();
                     while (rs1.next()) {
-                    String mobileBrand = rs.getString("mobileBrand");
-                    String mobileName = rs.getString("mobileName");
-                    String imgae = rs.getString("image");
-                    double price = rs.getDouble("price");
-                    int quantity = rs.getInt("quantity");
-                    double sale = rs.getDouble("sale");
-                    String description = rs.getString("description");
+                    String mobileBrand = rs1.getString("mobileBrand");
+                    String mobileName = rs1.getString("mobileName");
+                    String imgae = rs1.getString("image");
+                    double price = rs1.getDouble("price");
+                    int quantity = rs1.getInt("quantity");
+                    double sale = rs1.getDouble("sale");
+                    String description = rs1.getString("description");
                     list.add(new ProductDTO(mobileId, description, price, mobileName, mobileBrand, quantity, sale, imgae));
+                        System.out.println("hehe");
                 }
                 }
             }
@@ -389,8 +391,8 @@ public class ProductDAO {
     }
 
     
-public boolean isWishList(String mobileId) throws Exception {
-        String sql = "SELECT * FROM tblWishList WHERE mobileId = ?;";
+public boolean isWishList(String mobileId,String userId) throws Exception {
+        String sql = "SELECT * FROM tblWishList WHERE mobileId = ? AND userId = ?;";
         Connection connection;
         PreparedStatement ps;
         
@@ -399,25 +401,20 @@ public boolean isWishList(String mobileId) throws Exception {
             connection = DBUtils.getConnection();
             ps = connection.prepareStatement(sql);
             ps.setString(1, mobileId);
+            ps.setString(2, userId);
             ResultSet rs = ps.executeQuery();
             while (rs.next()){
                 response = true;
             }
             
-
         } catch (Exception ex) {
         }
         return response;
     }
 
-public void addWishList(){
-    String sql = INSERT_WISHLIST;
-    
-}
-
 
     public boolean removeWishListByMobileId(String mobileId, String userId) throws Exception {
-        String sql = "DELETE FROM tblWishList WHERE mobileId = ?;";
+        String sql = "DELETE FROM tblWishList WHERE mobileId = ? AND userId = ?;";
         Connection connection;
         PreparedStatement ps;
         ResultSet rs;
@@ -426,14 +423,14 @@ public void addWishList(){
             connection = DBUtils.getConnection();
             ps = connection.prepareStatement(sql);
             ps.setString(1, mobileId);
+            ps.setString(2, userId);
             response = ps.executeUpdate() > 0 ? true : false;
             if (!response) {
                 sql = INSERT_WISHLIST;
-
                 ps = connection.prepareStatement(sql);
                 ps.setString(1, mobileId);
                 ps.setString(2, userId);
-                int affectedRows = ps.executeUpdate();
+                rs= ps.executeQuery();
             }
 
         } catch (Exception ex) {

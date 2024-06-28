@@ -1,0 +1,16 @@
+SMAP
+thankyou_jsp.java
+JSP
+*S JSP
+*F
++ 0 thankyou.jsp
+thankyou.jsp
+*L
+1,30:45
+31,4:76
+34,42:80
+76:122,3
+77,31:125
+108,2:156,3
+110,164:162
+*E

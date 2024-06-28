@@ -29,7 +29,6 @@ public class AddController extends HttpServlet {
             String description = request.getParameter("description");
             String mobileBrand = request.getParameter("mobileBrand");
             String image = request.getParameter("image");
-
             double price = Double.parseDouble(request.getParameter("price"));
             double sale = Double.parseDouble(request.getParameter("sale"));
             int quantity = Integer.parseInt(request.getParameter("quantity"));
@@ -39,13 +38,17 @@ public class AddController extends HttpServlet {
                 request.setAttribute("MESSAGE", "Duplicated ID");
                 request.getRequestDispatcher(url).forward(request, response);
             }
-            if (price < 0) {
+            else if (price < 0) {
                 request.setAttribute("MESSAGE", "Nhập giá lớn hơn hoặc bằng 0, buôn bán ít nhất cũng phải hòa vốn ");
                 request.getRequestDispatcher(url).forward(request, response);
             }
 
-            if (quantity < 0) {
+            else if (quantity < 0) {
                 request.setAttribute("MESSAGE", "Nhập số lượng lớn hơn hoặc bằng 0 nhé");
+                request.getRequestDispatcher(url).forward(request, response);
+            }
+            else if (sale < 0 || sale>1) {
+                request.setAttribute("MESSAGE", "Invalid sale, must be lower than 1 and highger than 0");
                 request.getRequestDispatcher(url).forward(request, response);
             }
 

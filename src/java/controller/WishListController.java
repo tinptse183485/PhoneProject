@@ -45,6 +45,7 @@ public class WishListController extends HttpServlet {
                 request.setAttribute("NO_RESULTS", "No results found");
             }else {
                 request.setAttribute("LIST_PRODUCT", wishList);
+                
                 url=SUCCESS;
             }
         } catch (Exception e) {

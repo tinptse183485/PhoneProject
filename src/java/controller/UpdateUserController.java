@@ -23,8 +23,8 @@ import user.UserDTO;
 @WebServlet(name = "UpdateUserController", urlPatterns = {"/UpdateUserController"})
 public class UpdateUserController extends HttpServlet {
 
-    private static final String ERROR = "SearchUserController";
-    private static final String SUCCESS = "SearchUserController";
+    private static final String ERROR = "UpdateUserController";
+    private static final String SUCCESS = "UpdateUserController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -34,34 +34,27 @@ public class UpdateUserController extends HttpServlet {
             String userID = request.getParameter("userId");
             String userName = request.getParameter("userName");
             String role = request.getParameter("role");
-            if (!role.equalsIgnoreCase("MA") && !role.equalsIgnoreCase("US") && !role.equalsIgnoreCase("ST"))
-            {
-                request.setAttribute("ERROR", "Role must be MA/ST/US");
-                request.getRequestDispatcher(url).forward(request, response);
-
-            }
+            String password = request.getParameter("password");
             String mail = request.getParameter("mail");
             String phone = request.getParameter("phone");
             String address = request.getParameter("address");
+            if (!role.equalsIgnoreCase("MA") && !role.equalsIgnoreCase("US") && !role.equalsIgnoreCase("ST")) {
+                request.setAttribute("ERROR", "Role must be MA/ST/US");
+                request.getRequestDispatcher(url).forward(request, response);
 
-            UserDTO user = new UserDTO(userID, userName, role, "***", mail, phone, address);
-            UserDAO dao = new UserDAO();
-            HttpSession session = request.getSession();
-            UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
-            if (loginUser.getUserID().equals(userID)) {
-                loginUser.setUserName(userName);
-                loginUser.setRole(role);
-                loginUser.setMail(mail);
-                loginUser.setPhone(phone);
-                session.setAttribute("LOGIN_USER", loginUser);
-            }
-            boolean checkUpdate = dao.update(user);
-            if (checkUpdate) {
-                request.setAttribute("MESSAGE", "Update successfully!");
-                url = SUCCESS;
-            } else {
-                request.setAttribute("ERROR", "Update fail!");
-            }
+            } 
+
+                UserDTO user = new UserDTO(userID, userName, role, password, mail, phone, address);
+                UserDAO dao = new UserDAO();
+            System.out.println("2");
+                boolean checkUpdate = dao.update(user);
+                if (checkUpdate) {
+                    request.setAttribute("MESSAGE", "Update successfully!");
+                    url = SUCCESS;
+                } else {
+                    request.setAttribute("ERROR", "Update fail!");
+                }
+            
 
         } catch (Exception e) {
             log("Error at UpdateController: " + e.toString());

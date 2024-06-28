@@ -57,7 +57,7 @@ public class AddToCartServlet extends HttpServlet {
 
             // Check if the glasses already exist in the cart
             CartDTO existingCart = dao.getCartByGlassesId(mobileId, userID);
-            System.out.println(existingCart);
+            
             if (existingCart != null) {
                 // If the glasses already exist in the cart, update the quantity
                 existingCart.setQuantity(existingCart.getQuantity() + quantity);

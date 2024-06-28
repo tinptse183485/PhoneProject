@@ -34,7 +34,7 @@ public class SearchController extends HttpServlet {
                 List<ProductDTO> listProduct = dao.getListProductByPrice(fromPrice, toPrice);
 
                 if (listProduct.isEmpty()) {
-                    request.setAttribute("NO_RESULTS", "No search Results");
+                    request.setAttribute("ERROR", "No search Results");
                 } else {
                     request.setAttribute("LIST_PRODUCT", listProduct);
                 }

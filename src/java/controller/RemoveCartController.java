@@ -36,7 +36,7 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
                     request.setAttribute("message", "Remove of item in cart successfully.");
                     url = SUCCESS;
                 }else {
-                request.setAttribute("message", "Failed to remove item.");
+                request.setAttribute("error", "Failed to remove item.");
             }
                 
                

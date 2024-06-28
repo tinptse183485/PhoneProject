@@ -43,6 +43,7 @@ public class CategoryController extends HttpServlet {
         try {
             String brand = request.getParameter("brand");
             ProductDAO dao = new ProductDAO();
+          
             List<ProductDTO> listFromBrand = dao.searchbyBrand(brand);
             if (listFromBrand.isEmpty()){
                 request.setAttribute("NO_RESULTS", "No results found");

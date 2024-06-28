@@ -42,9 +42,8 @@ public class SearchUserController extends HttpServlet {
                 url= SUCCESS;
             }
             else{
-                request.setAttribute("MESSAGE", "No User Founded");
-                
-                
+                request.setAttribute("ERROR", "No User Founded");
+
             }
             
         } catch (Exception e) {

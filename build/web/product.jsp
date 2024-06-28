@@ -22,7 +22,7 @@
         <meta name="keywords" content="">
         <meta name="description" content="">
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,188 +31,7 @@
         <!-- script
          ================================================== -->
         <script src="js/modernizr.js"></script>
-        <style>
 
-            /* Columns */
-            .left-column {
-                width: 65%;
-                position: relative;
-            }
-
-            .right-column {
-                width: 35%;
-                margin-top: 60px;
-            }
-            /* Left Column */
-            .left-column img {
-                width: 100%;
-                position: absolute;
-                left: 0;
-                top: 0;
-                opacity: 0;
-                transition: all 0.3s ease;
-            }
-
-            .left-column img.active {
-                opacity: 1;
-            }
-            /* Product Description */
-            .product-description {
-                border-bottom: 1px solid #E1E8EE;
-                margin-bottom: 20px;
-            }
-            .product-description span {
-                font-size: 12px;
-                color: #358ED7;
-                letter-spacing: 1px;
-                text-transform: uppercase;
-                text-decoration: none;
-            }
-            .product-description h1 {
-                font-weight: 300;
-                font-size: 52px;
-                color: #43484D;
-                letter-spacing: -2px;
-            }
-            .product-description p {
-                font-size: 16px;
-                font-weight: 300;
-                color: #86939E;
-                line-height: 24px;
-            }
-            /* Product Color */
-            .product-color {
-                margin-bottom: 30px;
-            }
-
-            .color-choose div {
-                display: inline-block;
-            }
-
-            .color-choose input[type="radio"] {
-                display: none;
-            }
-
-            .color-choose input[type="radio"] + label span {
-                display: inline-block;
-                width: 40px;
-                height: 40px;
-                margin: -1px 4px 0 0;
-                vertical-align: middle;
-                cursor: pointer;
-                border-radius: 50%;
-                border: 2px solid #FFFFFF;
-                box-shadow: 0 1px 3px 0 rgba(0,0,0,0.33);
-            }
-
-            .color-choose input[type="radio"]#red + label span {
-                background-color: #C91524;
-            }
-            .color-choose input[type="radio"]#blue + label span {
-                background-color: #314780;
-            }
-            .color-choose input[type="radio"]#black + label span {
-                background-color: #323232;
-            }
-
-            .color-choose input[type="radio"]:checked + label span {
-                background-image: url(images/check-icn.svg);
-                background-repeat: no-repeat;
-                background-position: center;
-            }
-            /* Cable Configuration */
-            .cable-choose {
-                margin-bottom: 20px;
-            }
-
-            .cable-choose button {
-                border: 2px solid #E1E8EE;
-                border-radius: 6px;
-                padding: 13px 20px;
-                font-size: 14px;
-                color: #5E6977;
-                background-color: #fff;
-                cursor: pointer;
-                transition: all .5s;
-            }
-
-            .cable-choose button:hover,
-            .cable-choose button:active,
-            .cable-choose button:focus {
-                border: 2px solid #86939E;
-                outline: none;
-            }
-
-            .cable-config {
-                border-bottom: 1px solid #E1E8EE;
-                margin-bottom: 20px;
-            }
-
-            .cable-config a {
-                color: #358ED7;
-                text-decoration: none;
-                font-size: 12px;
-                position: relative;
-                margin: 10px 0;
-                display: inline-block;
-            }
-
-            .cable-config a:before {
-                content: "?";
-                height: 15px;
-                width: 15px;
-                border-radius: 50%;
-                border: 2px solid rgba(53, 142, 215, 0.5);
-                display: inline-block;
-                text-align: center;
-                line-height: 16px;
-                opacity: 0.5;
-                margin-right: 5px;
-            }
-            /* Product Price */
-            .product-price {
-                display: flex;
-                align-items: center;
-            }
-
-            .product-price span {
-                font-size: 26px;
-                font-weight: 300;
-                color: #43474D;
-                margin-right: 20px;
-            }
-
-            .cart-btn {
-                display: inline-block;
-                background-color: #7DC855;
-                border-radius: 6px;
-                font-size: 16px;
-                color: #FFFFFF;
-                text-decoration: none;
-                padding: 12px 30px;
-                transition: all .5s;
-            }
-            .cart-btn:hover {
-                background-color: #64af3d;
-            }
-            .old-price{ 
-
-                font-size:0.8em;  
-                text-decoration: line-through;  
-                color:grey;
-            }
-            .new-price{  
-                color:black; 
-                font-size:1em; 
-                line-height: 1.1; 
-            }
-            .container {
-                max-width: 1200px;
-                margin: 0 auto;
-                padding: 15px;
-                display: flex;
-            }
-        </style>
     </head><!--
  
         <body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" tabindex="0">
@@ -350,7 +169,8 @@
         </br>
         </br>
     </div>
-    <main class="container">
+                                            <div class="row">
+    <main class="container col-md-12">
         <% String mobileName = request.getParameter("name");
             ProductDAO dao = new ProductDAO();
             ProductDTO product = dao.getProductByName(mobileName);
@@ -377,22 +197,23 @@
             <div class="product-configuration">
 
                 <!-- Product Color -->
-                <div class="product-color">
-                    <span>Color</span>
+                <div class="Wishlist">
+                    <span>Love it ?</span>
 
-                    <div class="color-choose">
-                        <div>
-                            <input data-image="red" type="radio" id="red" name="color" value="red" checked>
-                            <label for="red"><span></span></label>
-                        </div>
-                        <div>
-                            <input data-image="blue" type="radio" id="blue" name="color" value="blue">
-                            <label for="blue"><span></span></label>
-                        </div>
-                        <div>
-                            <input data-image="black" type="radio" id="black" name="color" value="black">
-                            <label for="black"><span></span></label>
-                        </div>
+                    <div class="love">
+                        <form action="MainController" method="post">
+                            <input type="hidden" name="mobileID" value="<%= product.getMobileId()%>">
+                            <% Boolean check = (Boolean) request.getAttribute("isWishList");
+                                if (check == null) {
+                                    check = dao.isWishList(product.getMobileId(), loginUser.getUserID());
+                                }
+                                if (check) {%>
+                            <button style="color:red" type="submit" name="action" value="wishlist"> <i  class="bi bi-balloon-heart-fill"></i></button>                                             
+
+                            <% } else { %>
+                            <button type="submit" name="action" value="wishlist"> <i  class="bi bi-balloon-heart"></i></button>
+                                <% }%>
+                        </form>
                     </div>
 
                 </div>
@@ -411,19 +232,160 @@
                 %> <span>$<%=product.getPrice()%></span>
                 <%}%>
                 <form action="MainController" method="post">
-                     <input type="hidden" name="mobileName" value="<%= product.getMobileName()%>" />
-                                    <input type="hidden" name="mobileId" value="<%= product.getMobileId()%>" />
-                                    <input type="hidden" name="mobileBrand" value="<%= product.getMobileBrand()%>" />
-                                    <input type="hidden" name="image" value="<%= product.getImage()%>" />
-                                    <input type="hidden" name="description" value="<%= product.getDescription()%>" />
-                                    <input type="hidden" name="price" value="<%= product.getPrice()%>" />
-                                    <input type="hidden" name="quantity" value="<%= product.getQuantity()%>" />
-                                    <input type="hidden" name="sale" value="<%= product.getSale()%>" />
+                    <input type="hidden" name="mobileName" value="<%= product.getMobileName()%>" />
+                    <input type="hidden" name="mobileId" value="<%= product.getMobileId()%>" />
+                    <input type="hidden" name="mobileBrand" value="<%= product.getMobileBrand()%>" />
+                    <input type="hidden" name="image" value="<%= product.getImage()%>" />
+                    <input type="hidden" name="description" value="<%= product.getDescription()%>" />
+                    <input type="hidden" name="price" value="<%= product.getPrice()%>" />
+                    <input type="hidden" name="quantity" value="<%= product.getQuantity()%>" />
+                    <input type="hidden" name="sale" value="<%= product.getSale()%>" />
 
-                <button type="submit" name="action" value="Add to cart" class="cart-btn">Add to cart</button>
+                    <button type="submit" name="action" value="Add to cart" class="cart-btn">Add to cart</button>
                 </form>
             </div>
         </div>
     </main>
+    <footer style="margin-top:10rem" id="footer" class="col-md-12">
+        <div class="container">
+            <div class="row mainn">
+                <div class="footer-top-area">
+                    <div class="row d-flex flex-wrap justify-content-between">
+                        <div class="col-lg-3 col-sm-6 pb-3">
+                            <div class="footer-menu">
+                                <h1>TinStore</h1>
+                                <p>Your attentions is our happiness and motivation to develop more qualified products.</p>
+                                <div class="social-links">
+                                    <ul class="d-flex list-unstyled">
+                                        <li>
+                                            <a href="#">
+                                                <svg class="facebook">
+                                                <use xlink:href="#facebook" />
+                                                </svg>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <svg class="instagram">
+                                                <use xlink:href="#instagram" />
+                                                </svg>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <svg class="twitter">
+                                                <use xlink:href="#twitter" />
+                                                </svg>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <svg class="linkedin">
+                                                <use xlink:href="#linkedin" />
+                                                </svg>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <svg class="youtube">
+                                                <use xlink:href="#youtube" />
+                                                </svg>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-sm-6 pb-3">
+                            <div class="footer-menu text-uppercase">
+                                <h5 class="widget-title pb-2">Quick Links</h5>
+                                <ul class="menu-list list-unstyled text-uppercase">
+                                    <li class="menu-item pb-2">
+                                        <a href="#">Home</a>
+                                    </li>
+                                    <li class="menu-item pb-2">
+                                        <a href="#">About</a>
+                                    </li>
+                                    <li class="menu-item pb-2">
+                                        <a href="#">Shop</a>
+                                    </li>
+                                    <li class="menu-item pb-2">
+                                        <a href="#">Blogs</a>
+                                    </li>
+                                    <li class="menu-item pb-2">
+                                        <a href="#">Contact</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6 pb-3">
+                            <div class="footer-menu text-uppercase">
+                                <h5 class="widget-title pb-2">Help & Info Help</h5>
+                                <ul class="menu-list list-unstyled">
+                                    <li class="menu-item pb-2">
+                                        <a href="#">Track Your Order</a>
+                                    </li>
+                                    <li class="menu-item pb-2">
+                                        <a href="#">Returns Policies</a>
+                                    </li>
+                                    <li class="menu-item pb-2">
+                                        <a href="#">Shipping + Delivery</a>
+                                    </li>
+                                    <li class="menu-item pb-2">
+                                        <a href="#">Contact Us</a>
+                                    </li>
+                                    <li class="menu-item pb-2">
+                                        <a href="#">Faqs</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6 pb-3">
+                            <div class="footer-menu contact-item">
+                                <h5 class="widget-title text-uppercase pb-2">Contact Us</h5>
+                                <p>Do you have any queries or suggestions? <a href="mailto:">tinptse183485@fpt.edu.vn</a>
+                                </p>
+                                <p>If you need support? Just give us a call. <a href="">0899 452 877</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+    </footer>
+    <div id="footer-bottom" col-md-12>
+        <div class="container">
+            <div class="row d-flex flex-wrap justify-content-between">
+                <div class="col-md-4 col-sm-6">
+                    <div class="Shipping d-flex">
+                        <p>We ship with:</p>
+                        <div class="card-wrap ps-2">
+                            <img src="image/dhl.png" alt="visa">
+                            <img src="image/shippingcard.png" alt="mastercard">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="payment-method d-flex">
+                        <p>Payment options:</p>
+                        <div class="card-wrap ps-2">
+                            <img src="image/visa.jpg" alt="visa">
+                            <img src="image/mastercard.jpg" alt="mastercard">
+                            <img src="image/paypal.jpg" alt="paypal">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="copyright">
+                        <p>© Copyright 2024 TinStore. Founded by <a href="https://templatesjungle.com/">PhamTrungTin</a> 
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

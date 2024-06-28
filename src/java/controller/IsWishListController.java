@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import product.ProductDAO;
 
 /**
  *
@@ -28,15 +29,30 @@ public class IsWishListController extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
-     */
+     */    
+    private static final String ERROR = "user.jsp";
+    private static final String SUCCESS = "user.jsp";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String url=ERROR;
         try {  
-        String mobileId = request.getParameter("mobileId");
-        String userId = request.getParameter("userId");
-            
+        String mobileId = request.getParameter("mobileID");
+        String userId = request.getParameter("userID");
+        ProductDAO dao = new ProductDAO();
+        boolean check = dao.removeWishListByMobileId(mobileId, userId);
+            if (check){
+                System.out.println("love succesfully");
+                url=SUCCESS;
+            }
+            else{
+                System.out.println("love fail");
+            }
         } catch (Exception e) {
+        }finally{
+           
+                        request.getRequestDispatcher(url).forward(request, response);
+
         }
       
         
