@@ -141,6 +141,14 @@
                         <input type="text" class="form-control" id="c_address" name="phone" value="<%=loginUser.getPhone()%>"placeholder="Enter Phone number" required="">
                     </div>
                 </div>
+                          <%String error = (String) request.getAttribute("error");
+                                    if (error == null) {
+                                        error = "";
+                                    }
+                                %>
+                                <div class="d-flex justify-content-center">
+                                    <h3 style="color: red;"><%= error%></h3>
+                                </div>  
 
                 <!-- Rest of your form here -->
             </div>

@@ -28,7 +28,7 @@ public class CreateInvoiceController extends HttpServlet {
 
     private static final String ERROR="checkout.jsp";
     private static final String SUCCESS="thankyou.jsp";
-    
+    public static final String REG_PHONE = "(0[3|5|7|8|9|1])+([0-9]{8,9})";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -48,7 +48,11 @@ public class CreateInvoiceController extends HttpServlet {
             String gmail= request.getParameter("gmail");
             String address= request.getParameter("address");
             float total= Float.parseFloat(request.getParameter("total"));
-            
+            if (!phone.matches(REG_PHONE)){
+                request.setAttribute("error","Invalid phone,enter phone again");
+                
+            }
+            else{
             InvoiceDTO invoice= new InvoiceDTO(invId, userID, dateBuy, gmail, address, total, phone);
             boolean checkInsert= dao.createInvoice(invoice);
             if(checkInsert){
@@ -63,6 +67,7 @@ public class CreateInvoiceController extends HttpServlet {
                 session.setAttribute("invId",null);
 
                 url= SUCCESS;
+            }
             }
         } catch (Exception e) {
             log("Error at CreateInvoiceController: "+ e.toString());

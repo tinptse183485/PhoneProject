@@ -52,7 +52,7 @@
         <header id="header" class="site-header header-scrolled position-fixed text-black bg-light">
             <nav id="header-nav" class="navbar navbar-expand-lg px-3 mb-3">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="user.jsp">
+                    <a class="navbar-brand" href="manager.jsp">
                         <h1>  TinStore</h1>
                     </a>
                     <button class="navbar-toggler d-flex d-lg-none order-3 p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#bdNavbar" aria-controls="bdNavbar" aria-expanded="false" aria-label="Toggle navigation">

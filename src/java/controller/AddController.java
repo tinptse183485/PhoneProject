@@ -16,6 +16,7 @@ public class AddController extends HttpServlet {
     private static final String ERROR = "addPhone.jsp";
     private static final String REG_FLOAT = "[+-]?([0-9]*[.])?[0-9]+";
     private static final String REG_INT = "[0-9]+";
+    
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -51,6 +52,8 @@ public class AddController extends HttpServlet {
                 request.setAttribute("MESSAGE", "Invalid sale, must be lower than 1 and highger than 0");
                 request.getRequestDispatcher(url).forward(request, response);
             }
+            
+            
 
             product = new ProductDTO(mobileId, description, price, mobileName, mobileBrand, quantity, sale, image);
 
@@ -62,7 +65,7 @@ public class AddController extends HttpServlet {
 
                 request.setAttribute("MESSAGE", "Thêm ko thành công");
                 url = ERROR;
-            }
+            } 
 
         } catch (Exception e) {
             if (!request.getParameter("price").matches(REG_FLOAT) && request.getParameter("price") != null) {

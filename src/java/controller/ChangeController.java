@@ -42,7 +42,7 @@ public class ChangeController extends HttpServlet {
             int newQuantity = Integer.parseInt(quantityStr); // Parse the quantity string
             System.out.println(product.getQuantity());
             if (newQuantity>product.getQuantity()){
-                request.setAttribute("error", "Not enough in stock");
+                request.setAttribute("cart", "Not enough in stock");
             }else
                 if (existingCart != null) { // Check if existingCart is not null
                     existingCart.setCartId(cartId);
@@ -53,7 +53,7 @@ public class ChangeController extends HttpServlet {
                         request.setAttribute("message", "Update of item in cart successfully.");
                         url = SUCCESS;
                     } else {
-                        request.setAttribute("message", "Failed to update item.");
+                        request.setAttribute("cart", "Failed to update item.");
                     }
                 }
             
