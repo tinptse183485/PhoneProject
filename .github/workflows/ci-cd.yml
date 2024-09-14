@@ -49,6 +49,11 @@ jobs:
         echo "Contents of nbproject/project.properties:"
         cat nbproject/project.properties
 
+    - name: Set up JDBC driver
+      run: |
+        mkdir -p libs
+        cp libs/mssql-jdbc-12.6.1.jre8.jar libs/
+
     - name: Build with Ant
       run: |
         mkdir -p ~/.ant/lib
