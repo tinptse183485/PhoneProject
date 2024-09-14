@@ -40,6 +40,15 @@ jobs:
         mkdir -p ~/.ant/lib
         cp libs/org-netbeans-modules-java-j2seproject-copylibstask.jar ~/.ant/lib/
 
+    - name: Debug Build Files
+      run: |
+        echo "Contents of build.xml:"
+        cat build.xml
+        echo "Contents of nbproject/build-impl.xml:"
+        cat nbproject/build-impl.xml
+        echo "Contents of nbproject/project.properties:"
+        cat nbproject/project.properties
+
     - name: Build with Ant
       run: |
         mkdir -p ~/.ant/lib
