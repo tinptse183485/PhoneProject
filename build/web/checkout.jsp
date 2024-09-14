@@ -69,7 +69,7 @@
                                             </li>
                                             <li class="pe-3">
                                                 <a href="#">
-                                                    <p style="color:#212529"><%= loginUser.getUserName()%><p>
+                                                    <p style="colo:#212529"><%= loginUser.getUserName()%><p>
                                                 </a>
                                             </li>
                                             
@@ -337,7 +337,7 @@
           </div>
           <div class="col-md-4 col-sm-6">
             <div class="copyright">
-              <p>© Copyright 2024 TinStore. Founded by <a href="https://templatesjungle.com/">PhamTrungTin</a> 
+              <p>ï¿½ Copyright 2024 TinStore. Founded by <a href="https://templatesjungle.com/">PhamTrungTin</a> 
               </p>
             </div>
           </div>
