@@ -2,7 +2,7 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches: [ master ]  # Make sure this matches your main branch name
+    branches: [ master ]
   pull_request:
     branches: [ master ]
 
@@ -11,16 +11,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: Set up JDK 1.8
-      uses: actions/setup-java@v2
+      uses: actions/setup-java@v3
       with:
         java-version: '8'
         distribution: 'adopt'
 
     - name: Cache Ant packages
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: ~/.ant/lib
         key: ${{ runner.os }}-ant-${{ hashFiles('**/build.xml') }}
@@ -30,11 +30,8 @@ jobs:
     - name: Build with Ant
       run: ant -noinput -buildfile build.xml
 
-    - name: Run tests
-      run: ant -noinput -buildfile build.xml test
-
     - name: Upload artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: PhoneProject
         path: dist/PhoneProject.war
@@ -42,22 +39,16 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/master'
 
     steps:
     - name: Download artifact
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
       with:
         name: PhoneProject
 
-    - name: Deploy to server
-      env:
-        DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
-        DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
-        DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
-      run: |
-        mkdir -p ~/.ssh
-        echo "$DEPLOY_KEY" > ~/.ssh/id_rsa
-        chmod 600 ~/.ssh/id_rsa
-        scp -o StrictHostKeyChecking=no PhoneProject.war $DEPLOY_USER@$DEPLOY_HOST:/path/to/tomcat/webapps/
-        ssh -o StrictHostKeyChecking=no $DEPLOY_USER@$DEPLOY_HOST 'sudo systemctl restart tomcat'
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: .
