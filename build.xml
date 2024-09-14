@@ -72,5 +72,5 @@
     <target name="-javadoc-build-ci" depends="init" unless="no.javadoc.preview">
         <echo message="Skipping Javadoc generation in CI environment"/>
     </target>
-    <target name="javadoc-build" depends="init,-javadoc-build-ci,-javadoc-build-project,-javadoc-build-projects" if="no.javadoc.preview" unless="no.javadoc.build"/>
+    <target name="javadoc-build" depends="init,-javadoc-build-ci" if="no.javadoc.preview" unless="no.javadoc.build"/>
 </project>
