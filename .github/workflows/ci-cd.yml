@@ -2,9 +2,9 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]  # Make sure this matches your main branch name
   pull_request:
-    branches: [ main ]
+    branches: [ master ]
 
 jobs:
   build:
