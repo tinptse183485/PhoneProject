@@ -51,8 +51,12 @@ jobs:
 
     - name: Set up JDBC driver
       run: |
-        mkdir -p libs
-        cp libs/mssql-jdbc-12.6.1.jre8.jar libs/
+        if [ -f "libs/mssql-jdbc-12.6.1.jre8.jar" ]; then
+          echo "JDBC driver found at libs/mssql-jdbc-12.6.1.jre8.jar"
+        else
+          echo "JDBC driver not found in libs folder"
+          ls -R libs
+        fi
 
     - name: Build with Ant
       run: |
