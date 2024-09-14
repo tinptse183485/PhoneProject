@@ -13,6 +13,14 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    - name: List project contents
+      run: |
+        pwd
+        ls -R
+
+    - name: Check build-impl.xml
+      run: cat nbproject/build-impl.xml
+
     - name: Set up JDK 1.8
       uses: actions/setup-java@v4
       with:
