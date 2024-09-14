@@ -27,8 +27,13 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-ant-
 
+    - name: Set up CopyLibs
+      run: |
+        mkdir -p ~/.ant/lib
+        cp libs/org-netbeans-modules-java-j2seproject-copylibstask.jar ~/.ant/lib/
+
     - name: Build with Ant
-      run: ant -noinput -buildfile build.xml
+      run: ant -noinput -Dlibs.CopyLibs.classpath=~/.ant/lib/org-netbeans-modules-java-j2seproject-copylibstask.jar -buildfile build.xml
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4
