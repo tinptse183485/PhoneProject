@@ -4,6 +4,6 @@ import static org.junit.Assert.*;
 public class SampleTest {
     @Test
     public void testSample() {
-        assertTrue(true);
+        assertTrue("This test should pass", true);
     }
 }
