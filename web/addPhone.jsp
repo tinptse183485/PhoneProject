@@ -72,7 +72,7 @@
                                             </li>
                                             <li class="pe-3">
                                                 <a href="#">
-                                                    <p style="color:#212529"><%= loginUser.getUserName()%></p>
+                                                    <p style="color:#212529"><%= lonUser.getUserName()%></p>
                                                 </a>
                                             </li>
                                             
