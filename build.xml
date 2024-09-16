@@ -79,6 +79,7 @@
     <target name="compile-tests" depends="compile">
         <mkdir dir="${test.src.dir}"/>
         <mkdir dir="${build.test.classes.dir}"/>
+        <echo message="Compiling tests with classpath: ${toString:test.classpath}"/>
         <javac srcdir="${test.src.dir}" destdir="${build.test.classes.dir}" includeantruntime="false" debug="true" debuglevel="lines,vars,source" verbose="true" fork="true">
             <classpath refid="test.classpath"/>
             <compilerarg value="-Xlint:unchecked"/>
