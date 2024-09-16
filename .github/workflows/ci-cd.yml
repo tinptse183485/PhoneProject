@@ -63,6 +63,11 @@ jobs:
         mkdir -p src/test/java
         echo "public class SampleTest { }" > src/test/java/SampleTest.java
 
+    - name: Print test source
+      run: |
+        echo "Contents of SampleTest.java:"
+        cat src/test/java/SampleTest.java
+
     - name: Debug test directory
       run: |
         echo "Contents of src/test/java:"
@@ -77,18 +82,17 @@ jobs:
         echo "ANT_HOME: $ANT_HOME"
         ant -diagnostics
 
-    - name: Manual compile
+    - name: Compile tests
       run: |
-        mkdir -p build/test/classes
-        javac -verbose -cp "libs/*:build/classes" -d build/test/classes src/test/java/SampleTest.java > javac_output.log 2>&1 || true
-        cat javac_output.log
+        ant -debug compile-tests > compile_output.log 2>&1 || true
+        cat compile_output.log
+        if grep -q "BUILD FAILED" compile_output.log; then exit 1; fi
 
     - name: Run tests
       run: |
-        mkdir -p src/test/java
-        ant -debug test > build_output.log 2>&1 || true
-        cat build_output.log
-        if grep -q "BUILD FAILED" build_output.log; then exit 1; fi
+        ant -debug run-tests > test_output.log 2>&1 || true
+        cat test_output.log
+        if grep -q "BUILD FAILED" test_output.log; then exit 1; fi
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4

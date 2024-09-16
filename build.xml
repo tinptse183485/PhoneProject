@@ -76,7 +76,7 @@
         <echo message="Skipping Javadoc generation in CI environment"/>
     </target>
     <target name="javadoc-build" depends="init,-javadoc-build-ci" if="no.javadoc.preview" unless="no.javadoc.build"/>
-    <target name="test" depends="compile">
+    <target name="compile-tests" depends="compile">
         <mkdir dir="${test.src.dir}"/>
         <mkdir dir="${build.test.classes.dir}"/>
         <javac srcdir="${test.src.dir}" destdir="${build.test.classes.dir}" includeantruntime="false" debug="true" debuglevel="lines,vars,source" verbose="true" fork="true">
@@ -84,6 +84,8 @@
             <compilerarg value="-Xlint:unchecked"/>
             <compilerarg value="-Xdiags:verbose"/>
         </javac>
+    </target>
+    <target name="run-tests" depends="compile-tests">
         <junit printsummary="yes" haltonfailure="yes" failureproperty="test.failed">
             <classpath refid="test.classpath"/>
             <formatter type="plain" usefile="false" />
@@ -93,6 +95,7 @@
         </junit>
         <fail if="test.failed" message="Tests failed"/>
     </target>
+    <target name="test" depends="compile-tests,run-tests"/>
     <path id="test.classpath">
         <pathelement location="${build.classes.dir}"/>
         <pathelement location="${build.test.classes.dir}"/>
