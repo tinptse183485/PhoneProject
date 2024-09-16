@@ -77,16 +77,18 @@ jobs:
         echo "ANT_HOME: $ANT_HOME"
         ant -diagnostics
 
-    - name: Build and Compile with Ant
+    - name: Manual compile
       run: |
-        mkdir -p ~/.ant/lib
-        cp libs/org-netbeans-modules-java-j2seproject-copylibstask.jar ~/.ant/lib/
-        ant -verbose -noinput -Dlibs.CopyLibs.classpath=~/.ant/lib/org-netbeans-modules-java-j2seproject-copylibstask.jar -Djdbc.driver.jar=libs/mssql-jdbc-12.6.1.jre8.jar -Dno.javadoc.preview=true compile -buildfile build.xml
+        mkdir -p build/test/classes
+        javac -verbose -cp "libs/*:build/classes" -d build/test/classes src/test/java/SampleTest.java > javac_output.log 2>&1 || true
+        cat javac_output.log
 
     - name: Run tests
       run: |
         mkdir -p src/test/java
-        ant -debug test
+        ant -debug test > build_output.log 2>&1 || true
+        cat build_output.log
+        if grep -q "BUILD FAILED" build_output.log; then exit 1; fi
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4

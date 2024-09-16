@@ -81,6 +81,8 @@
         <mkdir dir="${build.test.classes.dir}"/>
         <javac srcdir="${test.src.dir}" destdir="${build.test.classes.dir}" includeantruntime="false" debug="true" debuglevel="lines,vars,source" verbose="true" fork="true">
             <classpath refid="test.classpath"/>
+            <compilerarg value="-Xlint:unchecked"/>
+            <compilerarg value="-Xdiags:verbose"/>
         </javac>
         <junit printsummary="yes" haltonfailure="yes" failureproperty="test.failed">
             <classpath refid="test.classpath"/>
