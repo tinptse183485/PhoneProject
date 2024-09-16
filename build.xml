@@ -79,7 +79,7 @@
     <target name="test" depends="compile">
         <mkdir dir="${test.src.dir}"/>
         <mkdir dir="${build.test.classes.dir}"/>
-        <javac srcdir="${test.src.dir}" destdir="${build.test.classes.dir}" includeantruntime="false" debug="true" debuglevel="lines,vars,source">
+        <javac srcdir="${test.src.dir}" destdir="${build.test.classes.dir}" includeantruntime="false" debug="true" debuglevel="lines,vars,source" verbose="true" fork="true">
             <classpath refid="test.classpath"/>
         </javac>
         <junit printsummary="yes" haltonfailure="yes" failureproperty="test.failed">

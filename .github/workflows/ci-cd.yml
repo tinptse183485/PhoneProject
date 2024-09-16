@@ -63,6 +63,20 @@ jobs:
         mkdir -p src/test/java
         echo "public class SampleTest { }" > src/test/java/SampleTest.java
 
+    - name: Debug test directory
+      run: |
+        echo "Contents of src/test/java:"
+        ls -R src/test/java
+        echo "Contents of SampleTest.java:"
+        cat src/test/java/SampleTest.java
+
+    - name: Debug Java environment
+      run: |
+        java -version
+        echo "CLASSPATH: $CLASSPATH"
+        echo "ANT_HOME: $ANT_HOME"
+        ant -diagnostics
+
     - name: Build and Compile with Ant
       run: |
         mkdir -p ~/.ant/lib
@@ -72,7 +86,7 @@ jobs:
     - name: Run tests
       run: |
         mkdir -p src/test/java
-        ant -verbose test
+        ant -debug test
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4
