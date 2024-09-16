@@ -12,6 +12,8 @@
     <import file="nbproject/build-impl.xml"/>
     <property name="do.copy.libs" value="false"/>
     <property name="libs.CopyLibs.classpath" value="libs/org-netbeans-modules-java-j2seproject-copylibstask.jar"/>
+    <property name="test.src.dir" value="src/test/java"/>
+    <property name="build.test.classes.dir" value="${build.dir}/test/classes"/>
     <!--
 
     There exist several targets which are by default empty and which can be 
@@ -75,13 +77,19 @@
     </target>
     <target name="javadoc-build" depends="init,-javadoc-build-ci" if="no.javadoc.preview" unless="no.javadoc.build"/>
     <target name="test" depends="compile">
-        <junit printsummary="yes" haltonfailure="yes">
+        <mkdir dir="${test.src.dir}"/>
+        <mkdir dir="${build.test.classes.dir}"/>
+        <javac srcdir="${test.src.dir}" destdir="${build.test.classes.dir}" includeantruntime="false">
+            <classpath refid="test.classpath"/>
+        </javac>
+        <junit printsummary="yes" haltonfailure="yes" failureproperty="test.failed">
             <classpath refid="test.classpath"/>
             <formatter type="plain" usefile="false" />
             <batchtest fork="yes">
                 <fileset dir="${test.src.dir}" includes="**/*Test.java"/>
             </batchtest>
         </junit>
+        <fail if="test.failed" message="Tests failed"/>
     </target>
     <path id="test.classpath">
         <pathelement location="${build.classes.dir}"/>

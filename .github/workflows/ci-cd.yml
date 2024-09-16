@@ -58,6 +58,11 @@ jobs:
           ls -R libs
         fi
 
+    - name: Set up project structure
+      run: |
+        mkdir -p src/test/java
+        echo "public class SampleTest { }" > src/test/java/SampleTest.java
+
     - name: Build and Compile with Ant
       run: |
         mkdir -p ~/.ant/lib
@@ -65,7 +70,9 @@ jobs:
         ant -verbose -noinput -Dlibs.CopyLibs.classpath=~/.ant/lib/org-netbeans-modules-java-j2seproject-copylibstask.jar -Djdbc.driver.jar=libs/mssql-jdbc-12.6.1.jre8.jar -Dno.javadoc.preview=true compile -buildfile build.xml
 
     - name: Run tests
-      run: ant test
+      run: |
+        mkdir -p src/test/java
+        ant test
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4
