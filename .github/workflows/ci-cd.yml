@@ -63,6 +63,12 @@ jobs:
         mkdir -p src/test/java
         echo "public class SampleTest { }" > src/test/java/SampleTest.java
 
+    - name: Compile tests
+      run: |
+        ant -debug compile-tests > compile_output.log 2>&1 || true
+        cat compile_output.log
+        if grep -q "BUILD FAILED" compile_output.log; then exit 1; fi
+
     - name: Print test source
       run: |
         echo "Contents of SampleTest.java:"
@@ -81,12 +87,6 @@ jobs:
         echo "CLASSPATH: $CLASSPATH"
         echo "ANT_HOME: $ANT_HOME"
         ant -diagnostics
-
-    - name: Compile tests
-      run: |
-        ant -debug compile-tests > compile_output.log 2>&1 || true
-        cat compile_output.log
-        if grep -q "BUILD FAILED" compile_output.log; then exit 1; fi
 
     - name: Run tests
       run: |
