@@ -64,3 +64,13 @@ jobs:
         echo "
         import org.junit.Test;
         import static org.junit.Assert
+        public class SampleTest {
+            @Test
+            public void testSample() {
+                assertTrue(\"This test should pass\", true);
+            }
+        }" > src/test/java/SampleTest.java
+
+    - name: Run tests
+      run: |
+        ant test
